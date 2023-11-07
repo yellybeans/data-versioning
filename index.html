@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a href="/#tech-stacks" class="navbar-link is-arrowless">
+                            <a href="/#tools" class="navbar-link is-arrowless">
                                 Tools
                             </a>
                             <div class="navbar-dropdown" id="navbarMenuToolsDropdown">
@@ -174,23 +174,23 @@
 
             <div class="column content">
                 <p>
-                    Wozu gehört der part hier?
+                    Mehr Data Versioning
                 </p>
                 <p>
-                    idk
+                    maybe
                 </p>
 
             </div>
         </div>
     </section>
 
-    <section class="section is-medium">
-        <div class="columns is-vcentered">
-            <div class="column is-half is-offset-half">
-            <h2 class="title" id="warum-data-versioning">Warum Data Versioning?</h2>
-            </div>
-        </div>
-        <div class="columns is-vcentered">
+<!--    <section class="section is-medium">-->
+<!--        <div class="columns is-vcentered">-->
+<!--            <div class="column is-half is-offset-half">-->
+<!--            <h2 class="title" id="warum-data-versioning">Warum Data Versioning?</h2>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="columns is-vcentered">-->
 
 <!--            <div class="column">-->
 <!--                <a href="images/datamesh.png.webp" class="glightbox">-->
@@ -198,45 +198,47 @@
 <!--                </a>-->
 <!--            </div>-->
 
-            <div class="column">
-                <div class="content">
-                    <p>
-                        Some text here
-                    </p>
-                    <p>
-                        TBD
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--            <div class="column">-->
+<!--                <div class="content">-->
+<!--                    <p>-->
+<!--                        Some text here-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        TBD-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 
     <section class="section is-medium">
-        <h2 class="title" id="datenquellen">Was sind Datenquellen?</h2>
+        <h2 class="title" id="datenquellen">Warum Data Versioning?</h2>
         <div class="content">
             <p class="mt-5">
-                Erklärung
+                allgemeine Erklärung
             </p>
 <!--            <img src="images/datamesharchitecture.png.webp" alt="Data Mesh Architecture" style="width: 100%">-->
             <p>
                 some more
             </p>
             <p>
-                What here?
+                Dann die einzelnen Punkte:
             </p>
         </div>
 
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">brauchen wir das hier?</h4>
+                <h4 class="title is-4">Was sind Datenquellen?</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            tbd
+                            Erklärung
                         </p>
                         <p>
-                            tbd
+                            some more.
+
+                            Beispielliste:
                         </p>
                         <ul>
                             <li>liste</li>
@@ -262,39 +264,14 @@
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">Data Contract</h4>
+                <h4 class="title is-4">Beziehungen zwischen Entitäten</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            A data contract is a document that defines the structure, format, semantics, quality, and terms of use for exchanging data between a data provider and their consumers.
-                            It covers:
-                        </p>
-                        <ul>
-                            <li>Data Product Provider, including owner and the output port to access</li>
-                            <li>Terms and conditions of data usage</li>
-                            <li>Schema and semantics of provided data attributes</li>
-                            <li>Quality attributes, such as freshness and number of rows</li>
-                            <li>Service-level objectives, such as availability and support times</li>
-                            <li>Billing details for using data</li>
-                        </ul>
-                        <p>
-                            While a data contract represents the interface specification, the actual implementation that provides the data is the output port of a data product.
-                        </p>
-                        <p>
-                            Data contracts come into play when data is exchanged between different teams or organizational units. First, and foremost, data contracts are a communication tool to express a common understanding of how data should be structured and interpreted. They make semantic and quality expectations explicit. Later in development and production, they also serve as the basis for code generation, testing, schema validations, quality checks, monitoring, access control, and computational governance policies. Data contracts can also be used for the input port for consumer-driven contract testing to verify that the data is provided as specified.
-                        </p>
-                        <p>
-                            The <strong><a href="https://datacontract.com/">Data Contract Specification</a></strong> defines a YAML format to describe the terms of use and attributes of provided data sets.
+                            Beschreibung
                         </p>
                     </div>
                     <div class="column">
-<!--                        <figure class="media-right">-->
-<!--                            <p class="image">-->
-<!--                                <a href="images/datacontract.png.webp" class="glightbox">-->
-<!--                                    <img src="images/datacontract.png.webp" alt="Data contract">-->
-<!--                                </a>-->
-<!--                            </p>-->
-<!--                        </figure>-->
                         <figure class="media-right">
                             <p class="image">
                                 <a href="images/datacontract-example.png" class="glightbox">
@@ -309,32 +286,11 @@
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">Federated Governance</h4>
+                <h4 class="title is-4">Verteilte Datenhaltung</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            The federated governance group is typically organized as a guild consisting of representatives of all teams taking part in the data mesh.
-                            They agree on global policies, which are the rules of play in the data mesh.
-                            These rules define how the domain teams have to build their data products.
-                        </p>
-                        <p>
-                            Policies on <strong>interoperability</strong> are the starting point.
-                            They allow other domain teams to use data products in a consistent way.
-                            For example, global policies could define that the standard way to provide data is as a CSV file on AWS S3 in a bucket owned by the corresponding domain team.
-                        </p>
-                        <p>
-                            Next, there has to be some form of <strong>documentation</strong> to discover and understand available data products.
-                            A simple policy for this could be a wiki page with a predefined set of metadata, such as owner of the data product, location URL, and descriptions of the CSV fields.
-                        </p>
-                        <p>
-                            A uniform way to access the actual data product in a <strong>secure</strong> way could be using role-based access in AWS IAM, managed by the domain team.
-                        </p>
-                        <p>
-                            Global policies such as <strong>privacy</strong> and <strong>compliance</strong> are also common. Think about protection of personally identifiable information (PII) or industry-specific legal requirements.
-                        </p>
-                        <p>
-                            Lots of example policies are available on our other website <strong><a href="https://datamesh-governance.com">datamesh-governance.com</a></strong>
-                            that you easily use in the <strong><a href="https://www.datamesh-manager.com">Data Mesh Manager</a></strong>, our tool for data mesh governance.
+                            Beschreibung
                         </p>
                     </div>
 
@@ -354,30 +310,11 @@
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">Transformations</h4>
+                <h4 class="title is-4">Abbruch der Verarbeitung</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            Diving into the organization of data within a data product, we can see the different kind of data that flows through different stages.
-                            Operational data is often ingested as some kind of <strong>raw</strong> and unstructured data.
-                        </p>
-                        <p>
-                            In a preprocessing step, raw data is cleaned and structured into events and entities.
-                            <strong>Events</strong> are small, immutable, and highly domain oriented, such as <em>OrderPurchased</em> or <em>ShipmentDelivered</em>.
-                            <strong>Entities</strong> represent business objects such as <em>shipments</em> or <em>articles</em> with their state changing over time. That’s why the entities often are represented as a list of snapshots, the history, with the latest snapshot being the current state.
-                        </p>
-                        <p>
-                            In practice, we often see <strong>manually</strong> entered or imported data.
-                            For example, forecast data sent via email as CSV files or text descriptions for business codes.
-                        </p>
-                        <p>
-                            Data from other teams are integrated as <strong>external</strong> data.
-                            When using data products from other teams that are well-governed, this integration might be implemented in a very lightweight way.
-                            In case of importing data from legacy systems, the external area acts as an <a href="https://www.domainlanguage.com/ddd/reference/">anti-corruption layer&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>.
-                        </p>
-                        <p>
-                            <strong>Aggregations</strong> combine data to answer analytical questions.
-                            Domain data can be published to other teams by defining a data contract. The data contract is usually implemented by a view, that is stable, even when the underlying data models change.
+                            Beschreibung
                         </p>
                     </div>
 
@@ -396,40 +333,11 @@
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">Ingesting</h4>
+                <h4 class="title is-4">Big Data</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            How can domain teams ingest their operational data into the data platform?
-                            A software system designed according to domain-driven design principles contains data as mutable entities/aggregates and immutable domain events.
-                        </p>
-                        <p>
-                            <strong>Domain events</strong> are a great fit to be ingested into the data platform as they represent relevant business facts.
-                            If there’s a messaging system in place domain events can be forwarded to the data platform by attaching an additional message consumer.
-                            Data can be collected, processed, and forwarded to the data platform in real time.
-                            With this <strong>streaming ingestion</strong>, data is sent in small batches when they arrive, so they are immediately available for analytics.
-                            As domain events are already well defined, there is little to do in terms of cleaning and preprocessing, except deduplication
-                            and anonymization of PII data.
-                            Sometimes, it is also advisable to define and ingest internal analytical events that contain information that is relevant only for analytical use cases so that domain events don’t have to be modified.
-                            <br>
-                            <em>Examples for streaming ingestion: Kafka Connect, Kafka Streams, AWS Lambda</em>
-                        </p>
-                        <p>
-                            Many business objects are persisted as <strong>entities and aggregates</strong> in SQL or NoSQL databases.
-                            Their state changes over time, and the latest state is persisted in the database only.
-                            Strong candidates for entities with state are <em>articles</em>, <em>prices</em>, <em>customer data</em>, or <em>shipment status</em>.
-                            For analytical use cases, it is often required to have both the latest state and the history of states over time.
-                            There are several approaches to ingest entities.
-                            One way is to generate and publish an <strong>onCreate/onUpdate/onDelete event</strong> with the current state  every time an entity is changed, e.g. by adding an
-                            <a href="https://en.wikipedia.org/wiki/Aspect-oriented_programming">aspect&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> or <a href="https://docs.spring.io/spring-data/jpa/docs/current/api/org/springframework/data/jpa/domain/support/AuditingEntityListener.html">EntityListeners&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>.
-                            Then streaming ingestion can be used to ingest the data as described above.
-                            When it is not feasible to change the operational software, <strong>change
-                            data capture (CDC)</strong> may be used to listen to database changes directly and stream them into the data platform.
-                            <br>
-                            <em>Examples for CDC streaming: <a href="https://debezium.io">Debezium&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a></em>
-                        </p>
-                        <p>
-                            Lastly, traditional scheduled <strong>ELT or ETL jobs</strong> that export data to file and load them into the platform can be set up, with the downside of not having real-time data, not having all stage changes between exports, and some work to consolidate exported data again. However, they are a viable option for legacy systems, such as mainframes.
+                            Beschreibung
                         </p>
                     </div>
 
@@ -444,37 +352,11 @@
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">Clean Data</h4>
+                <h4 class="title is-4">Schema Änderungen</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            Clean data is the foundation for effective data analytics.
-                            With data mesh, domain teams are responsible for performing data cleaning.
-                            They know their domain and can identify why and how their domain data needs to be processed.
-                        </p>
-                        <p>
-                            Data that is ingested into the data platform is usually imported in its original raw and unstructured format.
-                            When using a columnar database, this might be a row per event that contains a
-                            <a href="https://en.wikipedia.org/wiki/Character_large_object">CLOB&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> field for the event payload, which may be in JSON format.
-
-                            Now it can be preprocessed to get data clean:
-                        </p>
-                        <ul>
-                            <li><strong>Structuring:</strong> Transform unstructured and semi-structured data to the analytical data model, e.g., by extracting JSON fields into columns.</li>
-                            <li><strong>Mitigation of structural changes:</strong> When data structures have changed, mitigate them, e.g., by filling null values with sensible defaults.</li>
-                            <li><strong>Deduplication:</strong> As most analytical storage systems are append-only, entities and events cannot be updated. Remove all duplicate entries.</li>
-                            <li><strong>Completeness:</strong> Ensure that data contain agreed periods, even when there were technical issues during ingestion.</li>
-                            <li><strong>Fix outliers:</strong> Invalid data that may occur through bugs get identified and corrected.</li>
-                        </ul>
-                        <p>
-                            From an implementation perspective, these preprocessing steps can be implemented as simple SQL views that project the raw data.
-                            The queries may be organized through
-                            <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#with_clause">common table expressions&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> (CTEs)
-                            and may be enhanced with <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/user-defined-functions">user-defined functions&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> (UDFs), e.g., for JSON processing.
-                            As an alternative, the cleaning steps can be implemented as lambda functions that operate on topics.
-                            More complex pipelines can be built with frameworks like <a href="https://www.getdbt.com">dbt&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> or
-                            <a href="https://beam.apache.org">Apache Beam&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> that offer an advanced programming model,
-                            but also require more skills to master.
+                            Beschreibung
                         </p>
                     </div>
                     <div class="column is-half">
@@ -486,34 +368,11 @@
 
         <div class="card mt-5">
             <div class="card-content">
-                <h4 class="title is-4">Analytics</h4>
+                <h4 class="title is-4">DSGVO konforme Datenhaltung</h4>
                 <div class="columns reverse-columns">
                     <div class="column content">
                         <p>
-                            To gain insights, domain teams query, process, and aggregate their analytical data together with relevant data products from other domains.
-                        </p>
-                        <p>
-                            <strong>SQL</strong> is the foundation for most analytical queries.
-                            It provides powerful functions to connect and investigate data.
-                            The data platform should perform join operations efficiently, even for large data sets.
-                            Aggregations are used to group data and window functions help to perform a calculation across multiple rows.
-                            Notebooks help to build and document exploratory findings.
-                            <br>
-                            <em>Examples: Jupyter Notebooks, Presto</em>
-                        </p>
-                        <p>
-                            Humans understand data, trends, and anomalies much easier when they perceive them visually.
-                            There are a number of great data <strong>visualization</strong> tools that build beautiful charts, key performance indicator overviews, dashboards and reports.
-                            They provide an easy-to-use UI to drill down, filter, and aggregate data.
-                            <br>
-                            <em>Examples: Looker, Tableau, Metabase, Redash</em>
-                        </p>
-                        <p>
-                            For more advanced insights, <strong>data science and machine learning</strong> methods can be applied.
-                            These enable correlation analyses, prediction models, and other advanced use cases.
-                            Special methodological, statistical, and technological skills are required.
-                            <br>
-                            <em>Examples: scikit-learn, PyTorch, TensorFlow</em>
+                            Datenschutz Zeugs
                         </p>
                     </div>
 
@@ -529,42 +388,10 @@
         <div class="card mt-5">
             <div class="card-content">
                 <div class="content">
-                    <h4 class="title is-4">Data Platform</h4>
+                    <h4 class="title is-4">Leistungen und Garantien der Storagekomponenten</h4>
 
                     <p>
-                    The self-serve data platform may vary for each organization.
-                    Data mesh is a new field and vendors are starting to add data mesh capabilities to their existing offerings.
-                    </p>
-
-                    <p>
-                        Looking from the desired capabilities, you can distinguish between analytical capabilities and data product capabilities:
-                            <strong>Analytical capabilities</strong> enable the domain team to build an analytical data model and perform analytics for data-driven decisions.
-                        The data platform needs functions to ingest, store, query, and visualize data as a self-service.
-                        Typical data warehouse and data lake solutions, whether on-premise or a cloud provider, already exist.
-                        The major difference is that each domain team gets its own isolated area.
-                    </p>
-
-                    <p>
-                        A more advanced data platform for data mesh also provides additional domain-agnostic <strong>data product capabilities</strong>
-                        for creating, monitoring, discovering, and accessing data products.
-                        The self-serve data platform should support the domain teams so that they can quickly build a data product as well as run it in production in their isolated area.
-                        The platform should support the domain team in publishing their data products so that other teams can discover them.
-                        The discovery requires a central entry point for all the decentralized data products.
-                        A data catalog can be implemented in different ways: as a wiki, git repository, or there are even already vendor solutions for a cloud-based data catalog such as Select Star, Google Data Catalog, or AWS Glue Data Catalog.
-                        The actual usage of data products, however, requires a domain team to access, integrate, and query other domains' data products.
-                        The platform should support, monitor, and document the cross-domain access and usage of data products.
-                    </p>
-                    <p>
-                        An even more advanced data platform supports <strong>policy automation</strong>.
-                        This means that, instead of forcing the domain team to manually ensure that the global policies are not violated, the policies are automatically enforced through the platform.
-                        For example, that all data products have the same metadata structure in the data catalog, or that the PII data are automatically removed during data ingestion.
-                    </p>
-                    <p>
-                        Efficiently combining data products from multiple domains, i.e., having large cross-domain join operations within a few seconds, ensures developer acceptance and happiness.
-                        That's why the <strong>query engine has a large influence on the architecture of the data platform</strong>.
-                        A shared platform with a single query language and support for separated areas is a good way to start as everything is highly integrated.
-                        This could be Google BigQuery with tables in multiple projects that are discoverable through Google Data Catalog.
-                        In a more decentralized and distributed data mesh, a distributed query engine such as Presto can still perform cross-domain joins without importing data, but they come with their own limitations, e.g., limited pushdowns require that all underlying column data need to be transferred.
+                        Beschreibung
                     </p>
                 </div>
             </div>
@@ -573,23 +400,21 @@
         <div class="card mt-5">
             <div class="card-content">
                 <div class="content">
-                    <h4 class="title is-4">Enabling Team</h4>
+                    <h4 class="title is-4">Parallelität von Änderungen</h4>
+
                     <p>
-                        The enabling team spreads the idea of data mesh within the organization.
-                        In the beginning of data mesh adoption, a lot of explanatory efforts will be required and the enabling team can act as data mesh advocates.
-                        They help domain teams <a href="#domain-teams-journey">on their journey to become a full member of the data mesh</a>.
-                        The enabling team consists of specialists with extensive knowledge on
-                        data analytics, data engineering, and the self-serve data platform.
+                        Beschreibung
                     </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <div class="content">
+                    <h4 class="title is-4">Streaming/Batch/Hybrid Processing-Pipelines</h4>
                     <p>
-                        A member of the enabling team temporarily joins a domain team for a limited time span like a month as an
-                        <strong>internal consultant</strong> to understand the team’s needs, establish a learning environment,
-                        upskill the team members in data analytics, and guide them on how to use the self-serve data platform.
-                        They don’t create data products by themselves.
-                    </p>
-                    <p>
-                        In between their consulting engagements, they <strong>share learning
-                        materials</strong> such as walking skeletons, examples, best practices, tutorials, or even podcasts.
+                        Beschreibung
                     </p>
                 </div>
             </div>
@@ -599,7 +424,7 @@
 
 
     <section class="section is-medium">
-        <h2 class="title is-1">Mesh</h2>
+        <h2 class="title is-1">Andere Möglichkeit der Darstellung</h2>
         <div class="content">
             <p class="mt-5">
                 The <em>mesh</em> emerges when teams use other domain's data products.
@@ -656,14 +481,13 @@
 
 
     <section class="section is-medium">
-        <h2 class="title is-1" id="tech-stacks">Tech Stacks</h2>
+        <h2 class="title is-1" id="tools">Tools</h2>
         <div class="notification is-info is-light">
-            Data mesh is primarily an organizational approach, and that's why you can't buy a data mesh from a vendor. Technology, however, is important still as it acts as an enabler for data mesh, and only useful and easy to use solutions will lead to domain teams' acceptance. The available offerings of cloud providers already provide a sufficient set of good self-serve data services to let you form a data platform for your data mesh. We want to show which services can be used to get started.
+            Data Versioning ist ein noch recht neues Thema, wird aber immer wichtiger im Zeitalter des Big Data. Viele Tools sind daher noch sehr neu, aber es werden immer mehr. Wir arbeiten daran möglichst viele Tools zu untersuchen...
         </div>
         <div class="content">
             <p>
-                There are a lot of different ways to implement a data mesh architecture.
-                Here is a selection of typical tech stacks that we saw:
+                Die bisherigen Tools die wir betrachtet und untersucht haben:
             </p>
 
             <ul>
@@ -677,13 +501,12 @@
                 <li>Starburst Enterprise (TBD)</li>
             </ul>
             <p>
-                If you want to share your tech stack here, feel free to <a href="#authors">reach out to us</a>.
+                Wenn Sie bereits Tools genutzt habe und diese hier mit uns teilen möchten, können Sie sich gerne <a href="#authors">an uns wenden</a>.
             </p>
         </div>
     </section>
 
-
-
+    <!--
     <section class="section is-medium">
         <div class="columns is-vcentered">
             <div class="column content">
@@ -911,7 +734,6 @@
         </div>
     </section>
 
-
     <section class="section is-medium">
 
         <div class="columns">
@@ -988,141 +810,18 @@
         </div>
 
     </section>
+-->
 
     <section class="section is-medium">
         <div class="content">
             <h2 class="title is-1" id="faq">FAQ</h2>
 
-            <h4 class="title">So, what's really behind the hype?</h4>
+            <h4 class="title">So eine FAQ Section</h4>
             <p>
-                Data mesh is primarily an organizational change.
-                The responsibilities of data are shifted closer to the business value stream.
-                This enables faster data-driven decisions and reduces barriers for data-centric innovations.
+                Finde ich auch ne gute Idee.
             </p>
 
-
-            <h4 class="title">Who has actually implemented a data mesh?</h4>
-            <p>
-                There is a comprehensive collection of <a href="https://datameshlearning.com/user-stories/">user journey stories</a> from the Data Mesh Learning community
-                that covers data mesh examples from many different industries.
-            </p>
-
-            <h4 class="title">Is Data Mesh for my company?</h4>
-            <p>
-                It depends, of course.
-                There are a few prerequisites that should be in place:
-                You should have modularized your software system following domain-driven design principles or something similar.
-                You should have a good number (5+) of independent domain teams that have their systems already running in production.
-                And finally, you should trust your teams to make data-driven decisions on their own.
-            </p>
-
-            <h4 class="title">How to get started?</h4>
-            <p>
-                Start small and agree on the big picture.
-                Find two domain teams (that are around level 2) that have a high value use case where one team needs data from the other team.
-                Let one team build a data product (level 4) and another team use that data product (level 3).
-                You don’t need a sophisticated data platform yet.
-                You can start sharing the files via AWS S3, a Git repository, or use a cloud-based database, such as Google BigQuery.
-            </p>
-
-            <h4 class="title">When should I avoid a Data Mesh?</h4>
-            <p>
-                There are some indicators when a data mesh approach might not be suitable for you, including:
-            </p>
-            <ul>
-                <li>You are too small and don’t have multiple independent engineering teams.</li>
-                <li>You have low-latency data requirements. Data Mesh is a network of data. If you need to optimize for low-latency, invest in a more integrated data platform.</li>
-                <li>You are happy with your monolithic highly integrated system (such as SAP). It might be more efficient to use their analytical platform.</li>
-            </ul>
-
-            <h4 class="title">What is Data Mesh not?</h4>
-            <ul>
-                <li>Data Mesh is not a Silver Bullet.</li>
-                <li>Data Mesh is not a religion.</li>
-                <li>Data Mesh is not plug-and-play.</li>
-                <li>Data Mesh is not a product you can just buy.</li>
-                <li>Data Mesh is not a data-only platform.</li>
-                <li>Data Mesh cannot be implemented by the data team alone.</li>
-                <li>Data Mesh is not a concept for operational data.</li>
-                <li>Data Mesh is not data virtualization.</li>
-                <li>Data Mesh is not the successor to Data Warehouse or Data Lake.</li>
-                <li>Data Mesh cannot be rapidly implemented as Big Bang.</li>
-                <li>Data mesh is not a service mesh for data.</li>
-                <li>And data mesh has absolutely nothing to do with blockchain.</li>
-            </ul>
-
-            <h4 class="title">Is the Data Mesh a generic solution to a distributed data architecture?</h4>
-            <p>
-                No.
-            </p>
-            <p>
-                By definition, data mesh does not include data products used for serving real-time needs.
-                Data mesh focuses on analytical use cases.
-            </p>
-
-
-            <!--            <h4 class="title">How to integrate data from legacy systems?</h4>-->
-<!--            <p>-->
-<!--                Option 1: A team needs to wrap legacy data into a data product.-->
-<!--                Option 2: ACL-->
-<!--            </p>-->
-
-<!--            <h4 class="title">When should I avoid Data Mesh for my company?</h4>-->
-<!--            <p>-->
-<!--                TBD-->
-<!--            </p>-->
-
-
-<!--            <h4 class="title">Is Data Mesh DataOps?</h4>-->
-<!--            <p>-->
-<!--                TBD-->
-<!--            </p>-->
-
-
-
-            <h4 class="title">Data Product: What data to include in a data product? Should a data product include other domain's data?</h4>
-            <p>
-                Data that is created and owned by a domain are prime candidates, and the domain team should be encouraged to publish them in an appropriate, cleaned and managed form.
-            </p>
-            <p>
-For source-aligned domains, we mostly would argue to include reference IDs.
-It is OK to include other domain's data, if the data was transformed, is the basic for business decisions or the exact state of the data at a processing time was relevant. In fact, these are cases, when the processing domain takes ownership for these data based on business cases.
-            </p>
-            <p>
-Aggregate domains and consumer-aligned domains can include all foreign data that are relevant for their consumers' use cases.
-            </p>
-
-
-            <h4 class="title">What's the difference between data mesh and data fabric?</h4>
-            <p>
-                At first, <a href="https://www.ibm.com/analytics/data-fabric">data fabric&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> looks similar to data mesh because it offers a similar self-serve data platform.
-                Looking deeper, it turns out that data fabric is a central and domain-agnostic approach, which is in strong contrast to the domain-centric and decentralized approach of data mesh.
-                <a href="https://www.datanami.com/2021/10/25/data-mesh-vs-data-fabric-understanding-the-differences/">More in this comparison article&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>.
-            </p>
-
-            <h4 class="title">What might a journey be for teams who operate commercial off-the-shelf (COTS) systems?</h4>
-            <p>
-                Many COTS systems (such as Salesforce, SAP, Shopify, Odoo) provide domain optimized analytical capabilities.
-                So the journey for domain teams starts directly from <a href="https://www.datamesh-architecture.com/#level-2-analyze-own-data">level 2</a>.
-            </p>
-            <p>
-                The challenge is to integrate data products from other domains (<a href="https://www.datamesh-architecture.com/#level-3-analyze-cross-domain-data">level 3</a>, which may be skipped if not needed)
-                and to publish data products for other domains (<a href="https://www.datamesh-architecture.com/#level-4-publish-data-as-a-product">level 4</a>).
-                The system’s data need to be exported to the data platform and managed as data products, conforming the global policies.
-                As data models evolve with system updates, an anti-corruption layer is a must, e.g., as a cleaning step.
-            </p>
-
-            <h4 class="title">How might externally acquired datasets be part of a data mesh?</h4>
-            <p>
-                Typical examples: Price-Databases or Medical Studies.
-                A team needs to own this dataset and bring it into the datamesh. If this is not a very technical team, the data-platform should offer an easy self-service to upload files and provide Meta-Data. An Excel API or Google Sheets might also be an option here.
-            </p>
-
-<!--            <h4 class="title">How is Machine Learning related to Data Mesh?</h4>-->
-<!--            <p>-->
-<!--                TBD, @Larysa-->
-<!--            </p>-->
-
+<!--
             <h4 class="title">How did you draw the diagrams?</h4>
             <p>
                 We got this question quite a lot, so we are happy to share our tooling:<br>
@@ -1131,7 +830,7 @@ Aggregate domains and consumer-aligned domains can include all foreign data that
                 We automate the conversion to PNG, SVG and WebP with a little <a href="https://github.com/datamesh-architecture/datamesh-architecture.com/blob/main/convert">script</a>.
 
             </p>
-
+-->
             <h4 class="title">What are your questions?</h4>
             <p>
                 If you have any more questions, we encourage you to <a href="https://github.com/datamesh-architecture/datamesh-architecture.com/discussions">discuss with us on GitHub</a> or <a href="#authors">reach out to us directly</a>.
@@ -1298,72 +997,45 @@ Aggregate domains and consumer-aligned domains can include all foreign data that
         <h2 class="title is-1" id="authors">Authors</h2>
 
         <div class="columns is-gapless">
+
             <div class="column">
-
-
             <div class="card" style="box-shadow: none;">
             <div class="card-content">
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-64x64">
-                            <img class="is-rounded" src="images/jochen.webp" alt="Jochen Christ">
+                            <img class="is-rounded" src="images/rainer.webp" alt="Rainer Jaspert">
                         </figure>
                     </div>
                     <div class="media-content">
-                        <p class="title is-4"><a href="https://www.innoq.com/en/staff/jochen-christ/">Jochen</a></p>
-                        <p class="subtitle is-6"><a href="https://twitter.com/jochen_christ">@jochen_christ</a></p>
+                        <p class="title is-4"><a href="https://www.innoq.com/en/staff/rainer-jaspert/">Rainer</a></p>
+                        <p class="subtitle is-6"><a href="https://twitter.com/jochen">hast du twitter?</a></p>
                     </div>
                 </div>
 
                 <div class="content">
-                    Jochen Christ works as tech lead at INNOQ and is a specialist for self-contained systems and data mesh.
-                    Jochen is maintainer of <a href="https://www.http-feeds.org">HTTP Feeds</a>, <a href="https://whichjdk.com">Which JDK</a>, and co-author of <a href="https://www.remotemobprogramming.org">Remote Mob Programming</a>.
+                    Rainer Jaspert is a senior consultant at INNOQ Germany. He has several years of experience with the design and development of large IT systems in different sectors. Currently, he is primarily involved with the architecture and realization of distributed web applications in Java Enterprise environments.
                 </div>
             </div>
             </div>
             </div>
-            <div class="column">
 
+            <div class="column">
             <div class="card" style="box-shadow: none;">
                 <div class="card-content">
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-64x64">
-                                <img class="is-rounded" src="images/larysa.webp" alt="Larysa Visengeriyeva">
+                                <img class="is-rounded" src="images/alex.webp" alt="Alexander Kniesz">
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4"><a href="https://www.innoq.com/en/staff/larysa-visengeriyeva/">Larysa</a></p>
-                            <p class="subtitle is-6"><a href="https://twitter.com/visenger">@visenger</a></p>
+                            <p class="title is-4"><a href="https://www.innoq.com/en/staff/alexander-kniesz/">Alexander</a></p>
                         </div>
                     </div>
 
                     <div class="content">
-                        Dr. Larysa Visengeriyeva received her doctorate in Augmented Data Quality Management at the TU Berlin. At INNOQ she is working on the <a href="https://ml-ops.org/">operationalization of Machine Learning (MLOps)</a>.
-                    </div>
-                </div>
-            </div>
-
-            </div>
-            <div class="column">
-
-            <div class="card" style="box-shadow: none;">
-                <div class="card-content">
-                    <div class="media">
-                        <div class="media-left">
-                            <figure class="image is-64x64">
-                                <img class="is-rounded" src="images/simon.webp" alt="Simon Harrer">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <p class="title is-4"><a href="https://www.innoq.com/en/staff/dr-simon-harrer/">Simon</a></p>
-                            <p class="subtitle is-6"><a href="https://twitter.com/simonharrer">@simonharrer</a></p>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        Dr. Simon Harrer is a curious person working at INNOQ who likes to share his knowledge.
-                        He's a serial co-author of <a href="https://java.by-comparison.com">Java by Comparison</a>, <a href="https://remotemobprogramming.org">Remote Mob Programming</a>, <a href="https://gitops.tech">GitOps</a>, and, most recently, <a href="https://datamesh-architecture.com/">Data Mesh</a>.
+                        Alexander started in 2021 as a consultant at INNOQ. Since his master’s degree in data science, his focus is on topics like data processing, machine learning, and AI. With those specializations, he is also interested in other software development topics to help bringing ML into production. Therefore he is also interested in topics like Machine Learning Operations.
                     </div>
                 </div>
             </div>
