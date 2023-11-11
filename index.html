@@ -1,325 +1,942 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Data Mesh Architecture: Databricks</title>
+    <title>Data Versioning</title>
     <meta charset="utf-8">
-    <meta name="description" content="How to build a data mesh architecture with Databricks" />
-    <meta name="keywords" content="data mesh, data mesh architecture, domain-driven data analytics, data analytics, domain-driven design, domain ownership, data as a product, data product, federated governance, self-serve data platform, data platform">
+    <meta name="description" content="Data Versioning is rising because of the necessity of having a history for data analytics in a ML environment." />
+    <meta name="keywords" content="data versioning, data version control, git-like data versioning, data analytics, model versioning">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@innoq" />
-    <meta name="twitter:title" content="Data Mesh Architecture: Databricks" />
-    <meta name="twitter:description" content="How to build a data mesh architecture with Databricks" />
-    <meta name="twitter:image" content="https://www.datamesh-architecture.com/images/databricks_card.png" />
-    <meta name="twitter:image:alt" content="Data Mesh Architecture: Domains are in the center and teams do analytics on their own. They build and interconnect with data products. A data platform team and a enablement team help. Global policies are agreed through federated governance." />
-    <meta property="og:url" content="https://datamesh-architecture.com" />
-    <meta property="og:title" content="Data Mesh Architecture: Databricks" />
-    <meta property="og:description" content="How to build a data mesh architecture with Databricks" />
-    <meta property="og:image" content="https://www.datamesh-architecture.com/images/databricks_card.png" />
+    <meta name="twitter:title" content="Data Versioning" />
+    <meta name="twitter:description" content="Data Versioning From a Historical Perspective" />
+    <meta name="twitter:image" content="https://www.tbd.com/images/....png" />
+    <meta name="twitter:image:alt" content="tbd" />
+    <meta property="og:url" content="https://data-versioning.com" />
+    <meta property="og:title" content="Data Versioning" />
+    <meta property="og:description" content="Data Versioning From a Historical Perspective" />
+    <meta property="og:image" content="https://www.tbd.com/images/....png" />
 
     <link rel="preload" as="font" type="font/woff2" href="https://www.innoq.com/assets/MarkPro-Book.woff2?cachebuster=2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="https://www.innoq.com/assets/MarkPro-Bold.woff2?cachebuster=2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="https://www.innoq.com/assets/MarkPro-Heavy.woff2?cachebuster=2" crossorigin="">
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/0.9.3_css_bulma.css" />
-    <link rel="stylesheet" href="../css/font-awesome_6.0.0_css_all.css"/>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/0.9.3_css_bulma.css" />
+    <link rel="stylesheet" href="css/font-awesome_6.0.0_css_all.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-<nav class="navbar is-dark" role="navigation" aria-label="dropdown navigation">
-    <div class="container">
-        <div class="navbar-brand">
+<section class="hero is-fullheight" style="background-color: #242424">
+    <!--<div class="has-text-centered py-3" id="banner-data-product-canvas" style="background-color: #FF9B66;">
+        <strong>🔥 NEW: We published a <a href="/data-product-canvas.html" style="color: inherit; text-decoration: underline">Data Product Canvas</a> to design data products.</strong>
+    </div>-->
+<!--    <div class="has-text-centered py-3" id="banner-data-product-canvas" style="font-family: 'Mark Pro',sans-serif;  font-weight: 800; background-color: #FF9B66;">-->
+<!--        <div>🚀 NEW: We launched <a href="https://www.datamesh-manager.com/?ref=dma-banner" style="color: inherit; text-decoration: underline">Data Mesh Manager</a> to build a data product inventory and manage data contracts. 🚀</div>-->
+<!--    </div>-->
+<!--    <div class="has-text-centered py-3" id="banner-training" style="background-color: #FF9B66; display: none;">-->
+<!--        <strong>🇩🇪 Wir bieten ein <a href="https://www.socreatory.com/de/trainings/datamesh?ref=dma" style="color: inherit; text-decoration: underline">2-Tages-Training</a> zu Data Mesh an</strong>-->
+<!--        <br/>-->
+<!--        <strong>🇩🇪 NEU: <a href="https://oreilly.de/produkt/data-mesh/" style="color: inherit; text-decoration: underline">Wir haben das Data Mesh Buch von Zhamak Dehghani auf Deutsch übersetzt.</a></strong>-->
+<!--    </div>-->
+<!--    <script type="text/javascript">-->
+<!--      const languages = navigator.languages.join().toLowerCase();-->
+<!--      if(languages.indexOf("de") > -1) {-->
+<!--        document.getElementById("banner-training").style.display = "block";-->
+<!--        document.getElementById("banner-data-product-canvas").style.display = "none";-->
+<!--      } else {-->
+<!--        document.getElementById("banner-training").style.display = "none";-->
+<!--        document.getElementById("banner-data-product-canvas").style.display = "block";-->
+<!--      }-->
+<!--    </script>-->
+
+    <div class="hero-head">
+        <nav class="navbar is-dark" role="navigation" aria-label="dropdown navigation">
+            <div class="container">
+                <div class="navbar-brand">
                     <span class="navbar-burger" data-target="navbarMenuHeroA">
             <span></span>
             <span></span>
             <span></span>
           </span>
+                </div>
+                <div id="navbarMenuHeroA" class="navbar-menu">
+
+                    <div class="navbar-end">
+                        <a href="#wo-für" class="navbar-item">
+                            Wofür
+                        </a>
+                        <a href="#use-cases" class="navbar-item">
+                            Use Cases
+                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a href="#warum-data-versioning" class="navbar-link is-arrowless">
+                                Was ist
+                            </a>
+                            <div class="navbar-dropdown" id="navbarMenuArchitectureDropdown">
+                                <a href="#warum-data-versioning" class="navbar-item">Data Versioning</a>
+                                <hr class="navbar-divider">
+                                <a href="#datenquellen" class="navbar-item">Datenquellen</a>
+                                <a href="#beziehungen-zwischen-entitäten" class="navbar-item">Beziehungen zwischen Entitäten</a>
+                                <a href="#verteilte-datenhaltung" class="navbar-item">Verteilte Datenhaltung</a>
+                                <a href="#abbruch-der-verarbeitung" class="navbar-item">Abbruch der Verarbeitung</a>
+                                <a href="#big-data" class="navbar-item">Big Data</a>
+                                <a href="#schema-änderungen" class="navbar-item">Schema Änderungen</a>
+                                <a href="#dsgvo-konforme-datenhaltung" class="navbar-item">DSGVO konforme Datenhaltung</a>
+                                <a href="#leistungen-und-garantien-der-storagekomponenten" class="navbar-item">Leistungen und Garantien der Storagekomponenten</a>
+                                <a href="#parallelität-von-änderungen" class="navbar-item">Parallelität von Änderungen</a>
+                                <a href="#streaming-batch-hybrid-processing-pipelines" class="navbar-item">Streaming/Batch/Hybrid Processing-Pipelines</a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a href="#tools" class="navbar-link is-arrowless">
+                                Tools
+                            </a>
+                            <div class="navbar-dropdown" id="navbarMenuToolsDropdown">
+                                <a href="tools/lakefs.html" class="navbar-item">
+                                    LakeFS
+                                </a>
+                                <a href="tools/dvc.html" class="navbar-item">
+                                    DVC
+                                </a>
+                                <a href="tools/tbd.html" class="navbar-item">
+                                    More To Come
+                                </a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a href="#evaluation" class="navbar-link is-arrowless">
+                                Auswertungen
+                            </a>
+                            <div class="navbar-dropdown" id="navbarMenuEvaluationDropdown">
+                                <a href="tools/tool-kontext.html" class="navbar-item">
+                                    Kontext der Tools
+                                </a>
+                                <a href="tools/evaluation-matrix.html" class="navbar-item">
+                                    Evaluations-Matrix
+                                </a>
+                                <a href="tools/tbd.html" class="navbar-item">
+                                    More To Come
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <div class="hero-body">
+        <div class="">
+            <p class="title" style="color: white; font-family: 'Mark Pro',sans-serif; font-weight: 800; font-size: 10vw; letter-spacing: -1px; text-transform: uppercase; line-height: 1.0; margin-bottom: 2rem;">
+                Data <br><span style="color: #FF9B66;">Versioning</span>
+            </p>
+            <p class="subtitle" style="color: white; font-family: 'Freight Text','Georgia,Times','Times New Roman',serif; font-style: italic; font-size: 4vw; font-weight: 500;">Data Versioning From an Historical Perspective</p>
         </div>
-        <div id="navbarMenuHeroA" class="navbar-menu">
-
-            <div class="navbar-end">
-
-
-                <a href="/#why" class="navbar-item">
-                    Why
-                </a>
-                <a href="/#what-is-data-mesh" class="navbar-item">
-                    What
-                </a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a href="/#how-to-design-a-data-mesh" class="navbar-link is-arrowless">
-                        How
-                    </a>
-                    <div class="navbar-dropdown" id="navbarMenuArchitectureDropdown">
-                        <a href="/#how-to-design-a-data-mesh" class="navbar-item">Data Mesh Architecture</a>
-                        <hr class="navbar-divider">
-                        <a href="/#data-product" class="navbar-item">Data Product</a>
-                        <a href="/#federated-governance" class="navbar-item">Federated Governance</a>
-                        <a href="/#analytical-data" class="navbar-item">Analytical Data</a>
-                        <a href="/#ingesting" class="navbar-item">Ingesting</a>
-                        <a href="/#clean-data" class="navbar-item">Clean Data</a>
-                        <a href="/#analytics" class="navbar-item">Analytics</a>
-                        <a href="/#data-platform" class="navbar-item">Data Platform</a>
-                        <a href="/#enabling-team" class="navbar-item">Enabling Team</a>
-                    </div>
-                </div>
-                <a href="/#mesh" class="navbar-item">
-                    Mesh
-                </a>
-<div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link is-arrowless">
-                        Specifications
-                    </div>
-                    <div class="navbar-dropdown" id="navbarMenuSpecificationsDropdown">
-                        <a href="https://www.dataproduct-specification.com" class="navbar-item">Data Product Specification</a>
-                        <a href="https://www.datacontract-specification.com" class="navbar-item">Data Contract Specification</a>
-                    </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link is-arrowless">
-                        Open Source
-                    </div>
-                    <div class="navbar-dropdown" id="navbarMenuArchitectureToolsDropdown">
-                        <a href="/data-product-canvas.html" class="navbar-item">Data Product Canvas</a><a href="/data-mesh-canvas.html" class="navbar-item">Data Mesh Canvas</a>
-                        <a href="/fitness-test.html" class="navbar-item">Fitness Test</a><a href="https://cli.datacontract.com" class="navbar-item">Data Contract CLI</a>
-                        <a href="/open-source/aws.html" class="navbar-item">AWS Terraform Modules</a>
-                        <a href="/open-source/gcp.html" class="navbar-item">GCP Terraform Modules</a>
-                    </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a href="/#tech-stacks" class="navbar-link is-arrowless">
-                        Tech Stacks
-                    </a>
-                    <div class="navbar-dropdown" id="navbarMenuTechStackDropdown">
-                        <a href="/tech-stacks/google-cloud-bigquery.html" class="navbar-item">
-                            Google Cloud BigQuery
-                        </a>
-                        <a href="/tech-stacks/aws-s3-athena.html" class="navbar-item">
-                            AWS S3 and AWS Athena
-                        </a>
-                        <a href="/tech-stacks/azure-synapse-analytics.html" class="navbar-item">
-                            Azure Synapse Analytics
-                        </a>
-                        <a href="/tech-stacks/dbt-snowflake.html" class="navbar-item">
-                            dbt and Snowflake
-                        </a>
-                        <a href="/tech-stacks/databricks.html" class="navbar-item">
-                            Databricks
-                        </a>
-                        <a href="/tech-stacks/minio-trino.html" class="navbar-item">
-                            MinIO and Trino
-                        </a>
-                        <a href="/tech-stacks/sap.html" class="navbar-item">
-                            SAP
-                        </a>
-                    </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a href="/#domain-teams-journey" class="navbar-link is-arrowless">
-                        Start the Journey
-                    </a>
-                    <div class="navbar-dropdown is-right" id="navbarMenuTransformationDropdown">
-                        <a href="/#domain-teams-journey" class="navbar-item">
-                            Domain Team’s Journey
-                        </a>
-                        <a href="/#data-teams-journey" class="navbar-item">
-                            Data Team’s Journey
-                        </a>
-                        <a href="/literature.html" class="navbar-item">
-                            Scientific Literature
-                        </a>
-                        <a href="/real-world-learnings.html" class="navbar-item">
-                            Real World Learnings
-                        </a>
-                    </div>
-                </div>
-                <a href="https://www.datamesh-manager.com" class="navbar-item" style="color: #FF9B66">
-                    Data Mesh Manager
+    </div>
+    <div class="hero-foot">
+        <div class="columns is-mobile is-centered" style="font-size: 3em;">
+            <div class="column is-half" style="text-align: center;">
+                <a href="#wo-für" style="color: #FF9B66;">
+                <span class="icon is-medium">
+                    <i class="fa-solid fa-angle-down"></i>
+                </span>
                 </a>
             </div>
         </div>
     </div>
-</nav>
-
+</section>
 <div class="container">
 
-    <section class="section">
+    <section class="section is-large">
+        <h2 class="title" id="wo-für" >Wofür wird Data Versioning gebraucht</h2>
+        <div class="columns is-vcentered reverse-columns">
+            <div class="column content mb-0 pb-1">
+                <p>
+                    Wofür braucht man Data Versioning...
+                </p>
+                <p>
+                    TBD
+                </p>
+            </div>
+            <div class="column">
+                <figure class="image">
+                    <img src="images/whyteam.png.webp" alt="Picture of Data Versioning">
+                </figure>
+            </div>
+        </div>
+        <div class="columns is-vcentered">
+            <div class="column">
+                <figure class="image">
+                    <img src="images/whychecklist.png.webp" alt="Picture of Data Versioning">
+                </figure>
+            </div>
 
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-            <ul>
-                <li><a href="/">Data Mesh Architecture</a></li>
-                <li><a href="/#tech-stacks">Tech Stacks</a></li>
-                <li class="is-active"><a href="#" aria-current="page">Databricks</a></li>
-            </ul>
-        </nav>
+            <div class="column content">
+                <p>
+                    Mehr Data Versioning
+                </p>
+                <p>
+                    maybe
+                </p>
 
-        <h1 class="title">Databricks</h1>
+            </div>
+        </div>
+    </section>
 
-        <div class="notification is-info is-light">
-            Data mesh is primarily an organizational approach, and that's why you can't buy a data mesh from a vendor. Technology, however, is important still as it acts as an enabler for data mesh, and only useful and easy to use solutions will lead to domain teams' acceptance. The available offerings of cloud providers already provide a sufficient set of good self-serve data services to let you form a data platform for your data mesh. We want to show which services can be used to get started.
+    <section class="section is-medium">
+        <div class="columns is-vcentered">
+            <div class="column is-half is-offset-half">
+            <h2 class="title" id="use-cases">Wann brauche ich Data Versioning?</h2>
+            </div>
+        </div>
+        <div class="columns is-vcentered">
+
+            <div class="column">
+                <a href="images/datamesh.png.webp" class="glightbox">
+                    <img src="images/datamesh.png.webp" alt="What Is Data Mesh? Includes the four principles Domain Ownership, Data as a Product, Self-serve Data Platform, and Federated Governance.">
+                </a>
+            </div>
+
+            <div class="column">
+                <div class="content">
+                    <p>
+                        Some text here
+                    </p>
+                    <p>
+                        TBD
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section is-medium">
+        <h2 class="title" id="warum-data-versioning">Warum Data Versioning?</h2>
+        <div class="content">
+            <p class="mt-5">
+                allgemeine Erklärung
+            </p>
+<!--            <img src="images/datamesharchitecture.png.webp" alt="Data Mesh Architecture" style="width: 100%">-->
+            <p>
+                some more
+            </p>
+            <p>
+                Dann die einzelnen Punkte:
+            </p>
         </div>
 
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="datenquellen">Was sind Datenquellen?</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Erklärung
+                        </p>
+                        <p>
+                            some more.
+
+                            Beispielliste:
+                        </p>
+                        <ul>
+                            <li>liste</li>
+                            <li>liste</li>
+                            <li>liste</li>
+                        </ul>
+                        <p>
+                            tbd
+                        </p>
+                        <p>
+                            reference: <strong><a href="/data-product-canvas.html">Data Product Canvas</a></strong>.
+                        </p>
+                    </div>
+<!--                    <div class="column">-->
+
+<!--                        <p class="image">-->
+<!--                            <img src="images/data-product-canvas-template.png.webp" alt="Data Product consists of Data, Metadata, and Operations">-->
+<!--                        </p>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="beziehung-zwischen-entitäten">Beziehungen zwischen Entitäten</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Beschreibung
+                        </p>
+                    </div>
+                    <div class="column">
+                        <figure class="media-right">
+                            <p class="image">
+                                <a href="images/tbd.png" class="glightbox">
+                                    <img src="images/tbd.png" alt="Bild Beziehungen zw. Entitäten">
+                                </a>
+                            </p>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="verteilte-datenhaltung">Verteilte Datenhaltung</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Beschreibung
+                        </p>
+                    </div>
+
+                    <div class="column">
+                        <figure class="media-right">
+                            <p class="image">
+                                <a href="images/tbd.png.webp" class="glightbox">
+                                    <img src="images/tbd.png" alt="TBD">
+                                </a>
+                            </p>
+                        </figure>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="abbruch-der-verarbeitung">Abbruch der Verarbeitung</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Beschreibung
+                        </p>
+                    </div>
+
+                    <div class="column">
+                        <figure class="image">
+                            <a href="images/tbd.png.webp" class="glightbox">
+                                    <img src="images/tbd.png" alt="TBD">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="big-data">Big Data</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Beschreibung
+                        </p>
+                    </div>
+
+                    <div class="column">
+                        <figure class="image">
+                            <img src="images/tbd.png.webp" alt="TBD">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="schema-änderungen">Schema Änderungen</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Beschreibung
+                        </p>
+                    </div>
+                    <div class="column is-half">
+                        <figure class="media-right">
+                            <p class="image">
+                                <a href="images/tbd.png.webp" class="glightbox">
+                                    <img src="images/tbd.png" alt="TBD">
+                                </a>
+                            </p>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <h4 class="title is-4" id="dsgvo-konforme-datenhaltung">DSGVO konforme Datenhaltung</h4>
+                <div class="columns reverse-columns">
+                    <div class="column content">
+                        <p>
+                            Datenschutz Zeugs
+                        </p>
+                    </div>
+
+                    <div class="column">
+                        <figure class="image">
+                            <img src="images/tbd.png.webp" alt="TBD">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <div class="content">
+                    <h4 class="title is-4" id="leistungen-und-garantien-der-storagekomponenten">Leistungen und Garantien der Storagekomponenten</h4>
+
+                    <p>
+                        Beschreibung
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <div class="content">
+                    <h4 class="title is-4" id="parallelität-der-änderungen">Parallelität von Änderungen</h4>
+
+                    <p>
+                        Beschreibung
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-5">
+            <div class="card-content">
+                <div class="content">
+                    <h4 class="title is-4" id="streaming-batch-hybrid processing-pipelines">Streaming/Batch/Hybrid Processing-Pipelines</h4>
+                    <p>
+                        Beschreibung
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+<!--
+    <section class="section is-medium">
+        <h2 class="title is-1">Andere Möglichkeit der Darstellung</h2>
+        <div class="content">
+            <p class="mt-5">
+                The <em>mesh</em> emerges when teams use other domain's data products.
+                Using data from upstream domains simplifies data references and lookups (such as getting an article's price),
+                while data from downstream domains enables analyzing effects, e.g. for A/B tests (such as changes in the conversion rate).
+                Data from multiple other domains can be aggregated to build comprehensive reports and new data products.
+            </p>
+            <p>
+                Let's look at a simplified e-commerce example:
+            </p>
+
+            <div class="block">
+                <a href="images/mesh.png.webp" class="glightbox">
+                    <img src="images/mesh.png.webp" alt="Domains access data products from other domains">
+                </a>
+
+            </div>
+
+            <p>
+                Domains can be classified by data characteristics and data product usage. We adopt Zhamak Dehghani’s classification:
+            </p>
+
+            <h2>Source-aligned</h2>
+            <p>
+                In this example, an online shop is subdivided into domains along the customer journey, from <em>product search</em> over <em>checkout</em> to <em>payment</em>.
+                In a data mesh, these domains publish their data as data products, so others can access them.
+                The engineers do analytics on their own data to improve their operational systems and validate the business value of new features.
+                They use domain neighbor’s data to simplify their queries and get insights on effects in downstream domains.
+                These domain data can be referred to as <strong>source-aligned</strong>, as most of their published data products correspond closely to the <em>domain events</em> and <em>entities</em> generated in their operational systems.
+            </p>
+
+            <h2>Aggregate</h2>
+            <p>
+                For <a href="https://teamtopologies.com/key-concepts">complicated subsystems&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>, it can be efficient that a team focuses solely on delivering a data product that is <strong>aggregated</strong> of various data products from other domains.
+                A typical example is a 360° customer view that includes relevant data from multiple domains, such as account data, orders, shipments, invoices, returns, account balance, and internal ratings.
+                With respect to different bounded contexts, a comprehensive 360° customer view is hard to build, but it might be useful for many other domains.
+                Another example for a complicated subsystem is building sophisticated ML models that require enhanced data science skills.
+                It may be sensible that a data scientists team develops and trains a recommendation model by using data from checkout and the 360° customer view, and another team uses this model and focuses to present the calculated recommendations in the online shop or in promotional emails.
+            </p>
+
+            <h2>Consumer-aligned</h2>
+            <p>
+                In a company, there are also business departments that need data from the whole value stream to make sensible decisions, with people working in these departments are business experts but not engineers or technology-savvy.
+                Management and controlling requires detailed reports and KPIs from all domains to identify strengths and deviations.
+                Marketing does funnel and web analysis over all steps in the customer journey in their own optimized tools, such as Google Analytics or Adobe Analytics.
+                In these domains, the data model is optimized for a specific department's needs and can therefore be described as <strong>consumer-aligned</strong>.
+                Consumer-aligned reports were often one of the main tasks of central data teams.
+                With data mesh, (new) consumer-aligned domain teams focus on fulfilling data needs of one specific business domain, allowing them to gain deep domain knowledge and constantly develop better analytical results.
+                Business and IT grow closer together, either by building integrated domain teams or by having engineering teams that provide domain data as a service for the business, e.g., to support C-level or controlling.
+                Their data are typically used for their analytics and reports, but does not need to be published and managed as data products for other domains.
+            </p>
+        </div>
+    </section>
+-->
+
+    <section class="section is-medium">
+        <h2 class="title is-1" id="tools">Tools</h2>
+        <div class="notification is-info is-light">
+            Data Versioning ist ein noch recht neues Thema, wird aber immer wichtiger im Zeitalter des Big Data. Viele Tools sind daher noch sehr neu, aber es werden immer mehr. Wir arbeiten daran möglichst viele Tools zu untersuchen...
+        </div>
         <div class="content">
             <p>
-                The Databricks Lakehouse Platform is a popular data platform.
-                It is fully based on <em>Apache Spark</em>.
-                In fact, the people who created Apache Spark found the company to offer a commercial data platform.
-                In addition, they heavily promote <em>Delta Lake</em>, a storage format for files that uses versioned Parquet files and a transaction log to provide ACID transactions.
-            </p>
-            <p>
-                Databricks is a full-featured platform that runs on top of one of the three cloud providers: AWS, GCP, Azure.
-                On Azure, Microsoft is your business partner, so you don't have to sign a separate contract with Databricks.
-                In any case, the cloud provider resources (such as object storage, compute engines, virtual network configuration, access control) are used by the platform.
-                The platform basically runs in compute engines and uses futher compute engines to manage workloads.
-            </p>
-            <p>
-                Databricks is very popular among Data Scientists.
-                It has an integrated environment, collaborative notebooks, and managed and scalable resources.
-                But is it also a good choice for a general Data Mesh platform?
-                Let's dive into the components that we would use for Data Mesh.
-            </p>
-            <img src="../images/databricks.png.webp" alt="Data Mesh Architecture with Databricks" style="width: 100%">
-
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        The starting point in Databricks is the <strong>workspace</strong>.
-                        Each team typically creates their own workspace,
-                        and in their workspace their own <strong>clusters</strong> for their computing needs.
-                        These clusters come with a configured <em>Spark Runtime</em> as query engine.
-                        The clusters are mapped to cloud provider's compute instances and
-                        can be scaled elastically with the workloads to execute code and queries.
-                    </p>
-                </div>
-                <div class="column">
-                    <figure class="image">
-                        <a href="../images/databricks_cluster.png" class="glightbox">
-                            <img src="../images/databricks_cluster.png" alt="Databricks requires a Spark cluster to run code.">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        Data are always stored as files.
-                        To ingest data, data need to be written to an object store (S3, Cloud Storage, ADLS) by a provider in an appropriate format, such as Parquet, JSON, CSV or Delta.
-                        Transformed and intermediary data are usually written to <strong>delta files</strong> in a backing object storage, but Spark supports all other formats, if required.
-                        Delta files represent a table structure, and are optimized for columnar access.
-                        These delta tables also support insert, update and delete operations.
-                    </p>
-                </div>
-                <div class="column">
-                    <figure class="image">
-                        <a href="../images/databricks_files.png" class="glightbox">
-                            <img src="../images/databricks_files.png" alt="Databricks relies on files on the object store">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        With Spark, most of the data engineering is typically coded in Jupyter-like <strong>notebooks</strong> using <em>Python</em>, <em>Scala</em>, or <em>Spark SQL</em> code.
-                        The notebooks are interactive, meaning that cells can be executed directly and iteratively.
-                        With Databricks, data import, cleaning, transformation, explorative analytics, and machine learning is coded in notebooks.
-                        The code can usually be managed in a connected Git repository.
-                    </p>
-                </div>
-                <div class="column">
-                    <figure class="image">
-                        <a href="../images/databricks_notebook.png" class="glightbox">
-                            <img src="../images/databricks_notebook.png" alt="A Notebook in Databricks contains code">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        Notebooks are also the default way to build <strong>data products</strong>.
-                        <em>Delta live tables</em> are used to build managed pipelines with notebooks, for scheduled or continuous tranformations.
-                        Notebooks include the code that imports data, transforms and aggregates, performs validation, includes tests and quality metrics and finally creates a data set in the export format.
-                        Through Spark, there is a lot of freedom how to operate with the data and available libraries (especially for Python) provide unlimited capabilities.
-                        For example, a data product notebook may also include a step to generate and publish a data product description for documentation, including dynamic information on the current data set.
-                        Also, <strong>policy automation</strong> can be implemented this way, e.g. by including a shared library that performs anonymization procedures on tagged columns.
-                    </p>
-                </div>
-                <div class="column">
-                    <figure class="image">
-                        <a href="../images/databricks_dlt.png" class="glightbox">
-                            <img src="../images/databricks_dlt.png" alt="Delta live tables can be used as managed pipelines">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        A <strong>metastore</strong> maps table structures to underlying files in the object store.
-                        This allows you to execute structured SQL queries to files and to evolve the schema over time.
-                        Traditionally, most Data Lakes rely on Apache Hive, a metastore coming from Hadoop.
-                        As Hive has some drawbacks (e.g., difficult to install and maintain, requires a relational database).
-                        Databricks recently implemented an alternative to Hive, the <em>Unity Catalog</em>, a proprietary metastore for Databricks.
-                        A Unity Catalog can be shared across workspaces, as it is backed by a simple object store.
-                    </p>
-                    <p>
-                        All tables and columns are registered in the metastore.
-                        This makes the metastore a candidate for a <strong>data catalog</strong> to publish, manage and discover data products.
-                        A frequent challenge with a metastore as a data catalog is that it quickly becomes clattered and convoluted with internal and irrelevant data structures, important data products may perish.
-                        Unity Catalog is quite new, but certainly will become the default data catalog solution for a Databricks-only data platform concept.
-                    </p>
-                </div>
-                <div class="column">
-                    <figure class="image">
-                        <a href="../images/databricks_catalog.png" class="glightbox">
-                            <img src="../images/databricks_catalog.png" alt="">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        Databricks Premium comes with special view for data analysts that prefer to work with SQL.
-                        Historically, it was just an SQL endpoint to access data on Databricks, but additional services were added, providing a more data-warehouse-like experience.
-                        SQL features can be used for data mesh capabilities:
-                        Software engineers can use SQL for simple analytics, without the need to work with notebooks, and they can leverage <em>SQL dashboards</em> and visualizations to gain <strong>insights</strong>.
-                        <em>SQL alerts</em> can be used for basic <strong>data quality monitoring</strong>, as they run queries regularly and send notifications to a when the queries trigger.
-                        The SQL warehouse provides an HTTP or JDBC <em>connection endpoint</em> to publish data products for external applications, such as Tableau or PowerBI.
-                    </p>
-                </div>
-                <div class="column">
-                    <figure class="image">
-                        <a href="../images/databricks_sql.png" class="glightbox">
-                            <img src="../images/databricks_sql.png" alt="SQl queries with Databricks">
-                        </a>
-                    </figure>
-                </div>
-            </div>
-
-            <p>
-                Databricks is probably the most powerful data platform available today, and it clearly can act as a foundation for a data mesh platform.
-                It is optimized for data scientists that work a lot with notebooks, but it also
-                invested in further experiences.
-                As it tightly interacts with the cloud provider for data storage and access management, organization and administration will take a while to master for the data platform team, and it must be set up appropriately from the beginning.
-                Databricks is a great platform for data analysts and machine learning, but the entry barrier is pretty high for occasional users.
-                Domain team's software engineers who use data analytics from time to time and build just a few data products,
-                may need a lot of guidance by an enabling team to work efficiently and to gain a positive developer experience.<br>
+                Die bisherigen Tools die wir betrachtet und untersucht haben:
             </p>
 
-            <h5>References</h5>
             <ul>
-                <li><a href="https://docs.databricks.com/">Official databricks documentation</a></li>
-                <li><a href="https://www.youtube.com/watch?v=a00rdlNtW98">Data Mesh and Data Lakehouse talk by co-founder of Databricks</a></li>
+                <li><a href="tools/lakefs.html">LakeFS</a></li>
+                <li><a href="tools/dvc.html">DVC</a></li>
+                <li><a href="tools./tbd.html">more to come</a></li>
             </ul>
+            <p>
+                Wenn Sie bereits ein Data Versioning Tool genutzt haben und dieses hier mit uns teilen möchten, können Sie sich gerne <a href="#authors">an uns wenden</a>.
+            </p>
+        </div>
+    </section>
+
+    <!--
+    <section class="section is-medium">
+        <div class="columns is-vcentered">
+            <div class="column content">
+            </div>
+
+            <div class="column content">
+                <h2 class="title is-1" id="domain-teams-journey">Domain Team’s Journey</h2>
+            </div>
+        </div>
+
+        <div class="columns">
+            <div class="column">
+                <figure class="image">
+                    <a href="images/domainteamjourney.png.webp" class="glightbox">
+                        <img src="images/domainteamjourney.png.webp"
+                             alt="The five levels of the domain team's journey: (Level 0) No Data Analytics; (Level 1) Operational Database Queries; (Level 2) Analyze Own Data; (Level 3) Analyze Cross-domain Data; (Level 4) Publish Data as a Product">
+                    </a>
+                </figure>
+            </div>
+
+            <div class="column content">
+                <p>
+                    Just as the <a href="#data-teams-journey">data team has a journey to go on</a>,
+                    each of your domain teams has to go on a journey to become a contributing part
+                    of your data mesh as well.
+                    Each team can start their journey whenever they are ready and at their own pace.
+                    The benefits arise already along the journey.
+                    Teams will quickly gain from first data-driven decisions, starting an avalanche
+                    to use more and better data for even deeper insights.
+                    The data mesh evolves with each team that shares their data as products,
+                    enabling data-driven innovation.
+                </p>
+                <p>
+                    To make this journey successful, the team needs three things: a clear data mesh
+                    vision from top management to get everybody moving in the same direction, a
+                    supportive environment including an easy-to-use self-serve data platform to get
+                    the engineering team on a learning path toward data analytics, and a high trust
+                    environment to walk the journey in their own way and pace.
+                </p>
+                <p>So let’s start your journey!</p>
+            </div>
+        </div>
+
+        <div class="columns is-vcentered mt-6">
+            <div class="column content">
+                <h3 class="title is-3"><span class="tag">Level 0</span> No Data Analytics</h3>
+            </div>
+        </div>
+
+        <div class="columns reverse-columns is-vcentered">
+            <div class="column content">
+                <p>
+                    Your team is responsible for a domain and builds and operates <a
+                    href="https://scs-architecture.org/">self-contained systems&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> including the necessary
+                    infrastructure.
+                    It was quite an effort to build these systems, and you were highly focused on
+                    delivery excellence.
+                    These operational systems now generate domain data.
+                </p>
+                <p>
+                    Data analytics was just not relevant.
+                </p>
+            </div>
+            <div class="column">
+                <figure class="image">
+                    <a href="images/domainteamjourney_level0.png.webp" class="glightbox">
+                        <img src="images/domainteamjourney_level0.png.webp"
+                             alt="Level 0: No Data Analytics">
+                    </a>
+                </figure>
+            </div>
+        </div>
+
+        <div class="columns is-vcentered mt-6">
+            <div class="column content">
+                <h3 class="title is-3"><span class="tag">Level 1</span> Operational Database Queries
+                </h3>
+            </div>
+        </div>
+
+        <div class="columns reverse-columns is-vcentered">
+            <div class="column content">
+                <p>
+                    Being in production, you probably have to investigate an incident and need to
+                    analyze how many customers are affected.
+                    Also, some stakeholders might have questions regarding your data, such as "Which
+                    in-stock articles haven’t been sold in the last six months?"
+                    or "What were the shipping times during the last Black Week?"
+                    To answer all these questions, you send analytical queries to your operational
+                    database.
+                    Over time, you also do some first explorative analytics to get a deeper
+                    understanding of your system’s behavior.
+                </p>
+                <p>
+                    This increases load on your production database, and you might be tempted to
+                    change the production database to better support your analytical queries,
+                    like creating additional indices.
+                    You might offload the additional load to read replicas.
+                    But analytical queries are still slow and cumbersome to write.
+                </p>
+            </div>
+            <div class="column">
+                <figure class="image">
+                    <a href="images/domainteamjourney_level1.png.webp" class="glightbox">
+                        <img src="images/domainteamjourney_level1.png.webp"
+                             alt="Level 1: Operational Database Queries">
+                    </a>
+                </figure>
+            </div>
+        </div>
+
+
+        <div class="columns is-vcentered mt-6">
+            <div class="column content">
+                <h3 class="title is-3"><span class="tag">Level 2</span> Analyze Own Data</h3>
+            </div>
+        </div>
+        <div class="columns reverse-columns is-vcentered">
+            <div class="column content">
+                <p>
+                    With the pains of slow and hard-to-write analytical queries in the back of your
+                    mind, you try out the self-serve data platform that’s being promoted by the data
+                    platform team.
+                    For example, you now have access to Google BigQuery.
+                    On this platform, your team starts to build an analytical data model by ingesting
+                    messages from Kafka. This is your first data product.
+                    The data platform allows you to analyze data covering your own systems with maintainable and
+                    fast queries, while keeping the schemas of your operational databases untouched.
+                    You learn how to structure, preprocess, clean, analyze, and visualize analytical
+                    data&mdash;that’s a lot to learn even though most is SQL, which you are already
+                    familiar with.
+                </p>
+                <p>
+                    As questions regarding your own data can now be answered quickly, you and your
+                    product owner now enter the cycle of making data-driven decisions: define
+                    hypotheses and verify with data.
+                </p>
+
+            </div>
+            <div class="column">
+                <figure class="image">
+                    <a href="images/domainteamjourney_level2.png.webp" class="glightbox">
+                        <img src="images/domainteamjourney_level2.png.webp"
+                             alt="Level 2: Analyze Own Data">
+                    </a>
+                </figure>
+            </div>
+        </div>
+
+        <div class="columns is-vcentered mt-6">
+            <div class="column content">
+                <h3 class="title is-3"><span class="tag">Level 3</span> Analyze Cross-domain Data
+                </h3>
+            </div>
+        </div>
+
+        <div class="columns reverse-columns is-vcentered">
+            <div class="column content">
+                <p>
+                    Analyzing your own domain data is a great start, but combining it with data from
+                    other domains is where the magic begins.
+                    It allows you to get a comprehensive view despite the decentralization of data.
+                    Examples are A/B tests of the effect of a UI change to the conversion rate or
+                    building up machine learning models for fraud detection that include previous
+                    purchasing history and current click stream behavior.
+                    This requires that other teams share their data products in a way that your team can
+                    discover, access, and use it.
+                    This is when the mesh begins to form itself.
+                </p>
+                <p>
+                    When a team becomes a consuming member of the data mesh, it starts to gain
+                    interest in the interoperability and governance of the data mesh.
+                    Ideally, the team will send a representative to the data mesh governance group.
+                </p>
+                <p>
+                    In case you are the first team, you may have to skip this step for now and move
+                    on to level 4 and be the first to provide data for others.
+                </p>
+            </div>
+            <div class="column">
+                <figure class="image">
+                    <a href="images/domainteamjourney_level3.png.webp" class="glightbox">
+                        <img src="images/domainteamjourney_level3.png.webp"
+                             alt="Level 3: Analyze Cross-domain Data">
+                    </a>
+                </figure>
+            </div>
+        </div>
+
+
+        <div class="columns is-vcentered mt-6">
+            <div class="column content">
+                <h3 class="title is-3"><span class="tag">Level 4</span> Publish Data Contracts
+                </h3>
+            </div>
+        </div>
+        <div class="columns reverse-columns is-vcentered">
+            <div class="column content">
+                <p>
+                    Based on other teams' needs, you share your data with others by publishing data contracts.
+                    For example, you provide the confirmed, rejected, and aborted orders so others
+                    can correlate their events to the conversion rate.
+                    Instead of just being a consumer of data products, you become a  publisher of data
+                    products.
+                    You generate value for other teams.
+                    But at the same time, it increases your responsibility and operational duties in
+                    the long term.
+                </p>
+                <p>
+                    Published data products must comply with the global policies defined by the federated
+                    governance group.
+                    You have to know and understand the current global policies.
+                    Now, at the latest, you need to participate in and contribute to the federated
+                    governance group.
+                </p>
+            </div>
+            <div class="column">
+                <figure class="image">
+                    <a href="images/domainteamjourney_level4.png.webp" class="glightbox">
+                        <img src="images/domainteamjourney_level4.png.webp"
+                             alt="Level 4: Publish Data Contracts">
+                    </a>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section is-medium">
+
+        <div class="columns">
+            <div class="column content">
+            </div>
+            <div class="column">
+                <h2 class="title is-1" id="data-teams-journey">Data Team’s Journey</h2>
+            </div>
+        </div>
+
+        <div class="columns is-vcentered">
+        <div class="column">
+            <a href="images/datateamjourney.png.webp" class="glightbox">
+                <img src="images/datateamjourney.png.webp" alt="Data Team's Journey: From a central data team toward an enablement team, data platform team, and (new) domain teams with data expertise">
+            </a>
+        </div>
+        <div class="column">
+
+            <div class="content">
+
+            <p>
+                Data mesh is primarily an organizational construct and fits right into the <a href="https://teamtopologies.com/key-concepts">principles of team topologies&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>.
+                It shifts the responsibilities for data toward domain teams which are supported by a data platform team and a data enabling team.
+                Representatives of all teams come together in a federated governance group to define the common standards.
+            </p>
+            <p>
+                Today, in many organizations a central data team is responsible for a wide range of analytical tasks, from data engineering and managing data infrastructure to creating C-level reports.
+                Such a central data team suffers from cognitive overload, including domain, technical, and methodical knowledge.
+                data mesh mitigates this.
+            </p>
+            <p>
+                Data mesh offers new perspectives for members of the central data team as their analytical and data engineering skills remain highly necessary.
+                For example, they are a perfect fit to establish the data platform for people that prefer to work on the infrastructure.
+                Some of them can form a data enabling team to act as internal consultants, <a href="#domain-teams-journey">helping domain teams on their journey</a>.
+                Regardless of their new roles, many of them will meet again in the data mesh federated governance group to shape the future of the data mesh.</p>
+            </div>
+        </div>
+        </div>
+
+        <div class="columns reverse-columns is-vcentered">
+
+            <div class="column">
+                <div class="content">
+        <p>
+            The real mind shift, however, happens when founding new data-centric domains as shown in the figure above.
+            Let’s look at typical management reports that large central data teams usually produce based on monolithic data warehouses or data lakes.
+            With data mesh, the data engineers who created those management reports build a new domain team together with a dedicated product owner.
+            As engineers of the new domain team, they now can focus on their new domain and their consumers.
+            This allows them to gain deep domain knowledge over time, resulting in better reports and continuous optimizations.
+            In addition, they switch from using that monolith data warehouse to data products from other domains.
+            This switch is a gradual process driven by the demand for data products, accelerating the forming of a data mesh.
+            The product owner negotiates with other domain teams about the required data products and makes sure that the reports and other products the new domain team will build in the future fulfill the needs of the business.
+        </p>
+        <p>
+            As existing domain teams on their journey do more and more data analytics, another perspective for members of the central data team is to join one of those teams.
+            With their existing knowledge, they can accelerate the domain teams’ journeys toward a data mesh by spreading and teaching their knowledge and skills to the others in the team.
+            It is important that they become full members of the team and not founding a data sub-team within the domain team.
+            In addition to their knowledge and skills, the data engineers may also bring responsibilities and artifacts from the central data team to their domain teams.
+            For example, customer profiling, which was previously done by the central data team, will move into the responsibility of the recommendation domain team.
+        </p>
+        <p>
+            The data scientists, typically, are centrally organized as well.
+            That’s why their future, organizational-wise, is quite similar to that of the central data team.
+            The data products in the data mesh they focus on are machine learning features and models.
+            When joining an existing domain team, such a machine learning model might be fully integrated in a microservice.
+            So, data mesh enables such machine-learning-based services because the required <a href="https://ml-ops.org">MLOps&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a> capabilities can be easily built on top of the data mesh.
+        </p></div>
+        </div>
+            <div class="column">
+                <a href="images/newdomainteam.png.webp" class="glightbox">
+                    <img src="images/newdomainteam.png.webp" alt="Migrating an existing data product and some data engineers from the central data team to a (new) domain team">
+                </a>
+            </div>
+        </div>
+
+    </section>
+-->
+
+    <!--
+    <section class="section is-medium">
+        <div class="content">
+            <h2 class="title is-1" id="faq">FAQ</h2>
+
+            <h4 class="title">So eine FAQ Section</h4>
+            <p>
+                Finde ich auch ne gute Idee.
+            </p>
+
+            <h4 class="title">What are your questions?</h4>
+            <p>
+                If you have any more questions, we encourage you to <a href="https://github.com/datamesh-architecture/datamesh-architecture.com/discussions">discuss with us on GitHub</a> or <a href="#authors">reach out to us directly</a>.
+                But be warned:
+                Your question might end up in the FAQ. :-)
+            </p>
 
         </div>
+    </section>
+     -->
+
+
+    <!--
+    <section class="section is-medium">
+
+        <h2 class="title is-1 mb-6" id="learn-more">Learn more</h2>
+
+        <div class="card mb-3">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <p class="image is-64x64">
+                            <img src="images/book_datamesh_dehghani_german.jpeg">
+                        </p>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">
+                            <a href="https://oreilly.de/produkt/data-mesh/">Data Mesh</a>
+                        </p>
+                        <p class="subtitle is-6">by Zhamak Dehghani</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    Zhamak's book about data mesh, but in German and in color.
+                    Translated by Jochen and Simon, who are co-authors of this website.
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+
+
+    <section class="section is-medium">
+
+        <h2 class="title is-1" id="authors">Authors</h2>
+
+        <div class="columns is-gapless">
+
+            <div class="column">
+            <div class="card" style="box-shadow: none;">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="images/rainer.webp" alt="Rainer Jaspert">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4"><a href="https://www.innoq.com/de/staff/rainer-jaspert/">Rainer</a></p>
+                        <p class="subtitle is-6"><a href="https://www.linkedin.com/in/rainer-jaspert-85a58b6/">LinkedIn</a></p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    Rainer Jaspert ist bei INNOQ Deutschland als Senior Consultant tätig. Er verfügt über mehrjährige Erfahrung mit dem Entwurf und der Entwicklung großer IT-Systeme in unterschiedlichen Branchen. Zur Zeit beschäftigt er sich primär mit der Architektur und Realisierung verteilter Webanwendungen im Java-Enterprise-Umfeld.
+                </div>
+            </div>
+            </div>
+            </div>
+
+            <div class="column">
+            <div class="card" style="box-shadow: none;">
+                <div class="card-content">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-64x64">
+                                <img class="is-rounded" src="images/alex.webp" alt="Alexander Kniesz">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4"><a href="https://www.innoq.com/en/staff/alexander-kniesz/">Alexander</a></p>
+                            <p class="subtitle is-6"><a href="https://www.linkedin.com/in/alexander-kniesz-656256197/">LinkedIn</a></p>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        Alexander war schon seit 2017 als Werkstudent bei INNOQ tätig. Seit 2021 verstärkt er INNOQ nun als Consultant mit einem Schwerpunkt auf Machine Learning. Seit seinem abgeschlossenen Masterstudium in Data Science fokussiert er sich auf Themen wie Datenverarbeitung, Machine Learning und Künstliche Intelligenz. Er ist dabei ebenfalls an verwandten Themen, wie z.B. die Datenhaltung und MLOps, interessiert, da nur mit diesen Machine Learning erfolgreich in der Produktion eingesetzt werden kann.
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <section class="section is-medium">
+
+        <div class="content">
+            <h2 class="title is-1" id="contributors">Contributors</h2>
+            <p>
+                Viele tolle Menschen haben uns mit ihrem Feedback geholfen diese Website zu erstellen.
+                Wir möchten uns bei allen die uns in irgendeiner Weise unterstützt haben sehr herzlich bedanken.
+                Besonderer Dank geht an:
+                Dich,
+                und
+                Mich.
+            </p>
+            <p>
+                Falls Sie auch Feedback für uns haben, können Sie gerne <a href="https://github.com/datamesh-architecture/datamesh-architecture.com/discussions">mit uns auf GitHub</a> diskutieren oder <a href="#authors">Kontaktieren Sie uns direkt</a>!
+            </p>
+        </div>
+
     </section>
 
 </div>
@@ -328,7 +945,7 @@
     <div class="content has-text-centered">
         <p>
             <a href="https://www.innoq.com">
-                <img src="/images/supported-by-innoq--petrol-apricot.svg" alt="Supported by INNOQ" class="footer-logo" width="180" />
+                <img src="images/supported-by-innoq--petrol-apricot.svg" alt="Supported by INNOQ" class="footer-logo" width="180" />
             </a>
         </p>
         <p>
@@ -340,20 +957,20 @@
     </div>
 </footer>
 
-
-<script src="/js/navigation.js"></script>
+<script src="js/navigation.js"></script>
 
 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<script async src="https://scripts.simpleanalyticscdn.com/auto-events.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
 
-<link rel="stylesheet" href="/css/glightbox.css" />
-<script src="/js/glightbox.js"></script>
+<link rel="stylesheet" href="css/glightbox.css" />
+<script src="js/glightbox.js"></script>
 <script type="text/javascript">
-  const lightbox = GLightbox({});
+    const lightbox = GLightbox({});
 </script>
 
 
-<script src="/js/anchor.min.js"></script>
+<script src="js/anchor.min.js"></script>
 <script>anchors.add();</script>
 </body>
 
