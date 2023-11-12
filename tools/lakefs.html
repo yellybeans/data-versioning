@@ -120,13 +120,13 @@
 
         <div class="content">
             <p>
-                LakeFS ist eines der ersten und populärsten Data Versioning Tools, welches sich dank einer aktiven Community stetig weiterentwickelt. LakeFS ist dabei eines der git-like Versioning Tools, da es die üblichen Git-Befehle der Versionskontrolle benutzt.
+                LakeFS ist eines der ersten und populärsten Data Versioning Tools, welches sich immernoch stetig weiterentwickelt und verbessert. LakeFS ist dabei eines der git-like Versioning Tools, da es die üblichen Git-Befehle der Versionskontrolle benutzt.
             </p>
             <p>
-                LakeFS ist dabei sowohl für Data Science Workloads als auch im Data Engineering nützlich.
+                Es ist dabei sowohl für Data Science Workloads als für das Data Engineering nützlich.
             </p>
             <p>
-                Im Bereich des Data Science oder für einen Data Scientist birgt LakeFS viele Vorteile, wie z.B.:
+                Für einen Data Scientist bringt LakeFS Vorteile, wie z.B.:
                 Robust Data Pre-Processing: Data cleaning, outlier handling, filling in missing values, etc. Ensure your data pipelines for pre-processing are robust and provide high quality.
                 Deduplicated Experimentation: Use lakeFS branches to run experiments in parallel with zero-copy clones in a fully deduplicated data lake, allowing you to effectively compare them to select the best one.
                 Reproducible Feature Engineering & Model Training: Commit the results of your experiments and use the lakeFS Git integration to reproduce any experiment with the right version of the data, the code and the model weights.
@@ -138,7 +138,7 @@
                 Fix Bad Data with Production Rollback: Save entire consistent snapshots of your data using commits, allowing you to rollback to previous commits in case of bad data.
             </p>
             <p>
-                Einige sehr große Kunden wie z.B. Netflix, Toyota, Volvo, Daimler, Air Asia
+                Den Erfolg und die Effizienz von LakeFS wird durch einige große Kunden wie z.B. Netflix, Daimler und Air Asia, bewiesen.
             </p>
             <p>
 
@@ -146,8 +146,8 @@
             <div class="columns">
                 <div class="column">
                     <p>
-                        Wir haben LakeFS in einer Docker-Umgebung mit MinIO als Object Store und Trino als Compute Engine genutzt.
-                        Jedoch unterstützt LakeFS viele Integrationsmöglichkeiten und kann somit in vielen unterschiedlichen Data Stacks verwendet werden. Im Folgenden wird eine kleine Übersicht der derzeitigen Integrationen gegeben. Für eine vollständige Darstellung wird jedoch ausdrücklich auf die Website und Dokumentation von LakeFS verwiesen.
+                        Wir haben LakeFS in einer Docker-Umgebung mit MinIO als lokalen Object Store und Trino als Compute Engine genutzt. Dies war in unserem Anwendungsfall ausreichend.
+                        LakeFS unterstützt jedoch viele Integrationsmöglichkeiten und kann daher in vielen unterschiedlichen Data Stacks verwendet werden. Im Folgenden wird eine kleine Übersicht der derzeitigen Integrationen gegeben. Für eine vollständige Darstellung wird jedoch ausdrücklich auf die Website und Dokumentation von LakeFS verwiesen.
                     </p>
                     <p>
 
@@ -172,10 +172,13 @@
                 </div>
                 <div class="column">
                     <p>
-                        Object Store: Every object store that uses the S3 interface like AWS, Azure, Google Cloud or MinIO
-                        Compute Engine: AWS Glue, Databricks, Snowflake Starburst, Hive, uvm.
-                        Data Storage Formats: LakeFS unterstützt viele Datenformate wie csv oder parquet, aber auch Open Table Formate wie Delta Lake und Iceberg. Da LakeFS auch für Data Lakes geeignet ist unstützt es auch unstrukturierte Daten, wie Bilder und Videos.
-                        Zusätzlich unterstützt LakeFS auch Orchestration und Workflow Tools, wie Airflow, Dagster und dbt.
+                        Zu den Integrationsmöglichkeiten gehören:
+                    <ul>
+                        <li>Für den Object Store jeden S3 fähigen Object Store, wie z.B. AWS, Azure, Google Cloud oder auch MinIO.</li>
+                        <li>Als Compute Engine die am häufigsten genutzten, wie AWS Glue, Databricks, Snowflake Starburst, Hive, uvm.</li>
+                        <li>LakeFS ist unabhängig vom Datenformat. Daher unterstützt es fast alle Datenformate wie z.B. csv oder parquet, aber auch Open Table Formate wie Delta Lake und Iceberg und auch unstrukturierte Daten, wie Bilder und Videos.</li>
+                        <li>Zusätzlich unterstützt LakeFS auch Orchestration und Workflow Tools, wie Airflow, Dagster und dbt.</li>
+                    </ul>
                     </p>
                 </div>
             </div>
