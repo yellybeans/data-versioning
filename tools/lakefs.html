@@ -3,12 +3,12 @@
 <head>
     <title>Data Versioning: LakeFS</title>
     <meta charset="utf-8">
-    <meta name="description" content="How to build a data mesh architecture with Databricks" />
-    <meta name="keywords" content="data mesh, data mesh architecture, domain-driven data analytics, data analytics, domain-driven design, domain ownership, data as a product, data product, federated governance, self-serve data platform, data platform">
+    <meta name="description" content="Data Versioning with LakeFS" />
+    <meta name="keywords" content="data versioning, data version control, git-like data versioning, data analytics, model versioning">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@innoq" />
-    <meta name="twitter:title" content="Data Mesh Architecture: Databricks" />
+    <meta name="twitter:title" content="Data Versioning: LakeFS" />
     <meta name="twitter:description" content="How to build a data mesh architecture with Databricks" />
     <meta name="twitter:image" content="https://www.datamesh-architecture.com/images/databricks_card.png" />
     <meta name="twitter:image:alt" content="Data Mesh Architecture: Domains are in the center and teams do analytics on their own. They build and interconnect with data products. A data platform team and a enablement team help. Global policies are agreed through federated governance." />
@@ -71,9 +71,9 @@
                                 <a href="/data-versioning/tools/lakefs.html" class="navbar-item">
                                     LakeFS
                                 </a>
-                                <a href="/data-versioning/tools/dvc.html" class="navbar-item">
-                                    DVC
-                                </a>
+<!--                                <a href="/data-versioning/tools/dvc.html" class="navbar-item">-->
+<!--                                    DVC-->
+<!--                                </a>-->
                                 <a href="/data-versioning/tools/tbd.html" class="navbar-item">
                                     More To Come
                                 </a>
@@ -126,16 +126,14 @@
                 Es ist dabei sowohl für Data Science Workloads als für das Data Engineering nützlich.
             </p>
             <p>
-                Für einen Data Scientist bringt LakeFS Vorteile, wie z.B.:
-                Robust Data Pre-Processing: Data cleaning, outlier handling, filling in missing values, etc. Ensure your data pipelines for pre-processing are robust and provide high quality.
-                Deduplicated Experimentation: Use lakeFS branches to run experiments in parallel with zero-copy clones in a fully deduplicated data lake, allowing you to effectively compare them to select the best one.
-                Reproducible Feature Engineering & Model Training: Commit the results of your experiments and use the lakeFS Git integration to reproduce any experiment with the right version of the data, the code and the model weights.
+                Für einen Data Scientist bringt LakeFS Vorteile, wie z.B. eine einfache und robuste Datenvorverarbeitung. LakeFS Hooks ermöglichen vor und nach commits oder merges automatisch z.B. data cleaning, Ausreißer Handling oder fehlende Werte zu ergänzen.
+                Ein weiterer Vorteil ist die Deduplizierung bei Experimenten. Vor allem im Bereich des ML ist das Kopieren der Trainingsdaten zum Experimentieren aufgrund deren Größe problematisch. In LakeFS kann durch Branches eine isolierte Umgebung geschaffen werden, welche die Daten nicht dupliziert.
+                Ein anderer Vorteil ist, dass die Versionshistorie von LakeFS es einem erlaubt zu jedem commit in der Vergangenheit zurückzugehen. Eine Anwendung hiervon wäre, dass z.B. bei einem erfolgreichen ML Experiment der commit direkt die richtige Version der Daten, des Codes und des Modells enthält.
             </p>
             <p>
-                Aber auch im Data Engineering gibt es Vorteile:
-                Isolated Dev/Test Environments: Create isolated dev/test environments using lakeFS branches and reduce your testing time by 80%.
-                Promote Only High Quality Data to Production: Implement CI/CD for data with lakeFS hooks, allowing for automation of quality validation checks.
-                Fix Bad Data with Production Rollback: Save entire consistent snapshots of your data using commits, allowing you to rollback to previous commits in case of bad data.
+                Diese Vorteile sind auch im Bereich des Data Engineerings nützlich, da die Isolierung der Branches auch dazu führt, dass das Setup von Dev- und Testumbegungen sehr leicht wird und dabei keine Daten kopiert werden müssen.
+                Auch die Implementierung von CI/CD Pipelines wird durch die LakeFS Hooks erleichtert, wodurch automatisierte Qualitätschecks ermöglicht werden.
+                Letztlich ermöglicht die Versionshistorie gesamte Snapshots von den Daten zu erstellen, wodurch ein Rollback auf vorherige Versionen möglich wird.
             </p>
             <p>
                 Den Erfolg und die Effizienz von LakeFS wird durch einige große Kunden wie z.B. Netflix, Daimler und Air Asia, bewiesen.
@@ -155,8 +153,8 @@
                 </div>
                 <div class="column">
                     <figure class="image">
-                        <a href="../images/tbd.png" class="glightbox">
-                            <img src="../images/tbd.png" alt="LakeFS running picture">
+                        <a href="../images/lakeFS_dockercontainers.png" class="glightbox">
+                            <img src="../images/lakeFS_dockercontainers.png" alt="LakeFS running in docker">
                         </a>
                     </figure>
                 </div>
@@ -165,8 +163,8 @@
             <div class="columns">
                 <div class="column">
                     <figure class="image">
-                        <a href="../images/tbd.png" class="glightbox">
-                            <img src="../images/tbd.png" alt="picture">
+                        <a href="../images/lakefs_branches.png" class="glightbox">
+                            <img src="../images/lakefs_branches.png" alt="lakeFS branches">
                         </a>
                     </figure>
                 </div>
@@ -183,6 +181,7 @@
                 </div>
             </div>
 
+            <!--
             <div class="columns">
                 <div class="column">
                     <p>
@@ -197,6 +196,7 @@
                     </figure>
                 </div>
             </div>
+            -->
 
             <p>
                 Abschluss über die informationen zu LakeFS. erste Einschätzung
