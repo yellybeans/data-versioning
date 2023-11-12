@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Data Mesh Architecture: Databricks</title>
+    <title>Data Versioning: LakeFS</title>
     <meta charset="utf-8">
     <meta name="description" content="How to build a data mesh architecture with Databricks" />
     <meta name="keywords" content="data mesh, data mesh architecture, domain-driven data analytics, data analytics, domain-driven design, domain ownership, data as a product, data product, federated governance, self-serve data platform, data platform">
@@ -115,25 +115,43 @@
         <h1 class="title">LakeFS</h1>
 
         <div class="notification is-info is-light">
-            Dadurch dass Data Versioning noch ein relativ neu akutes Problemfeld darstellt, entwickeln sich viele Tools noch weiter, daher kann das folgende Wissen veraltet sein. Falls Ihnen etwas auffällt, wenden sie sich bitte an die Autoren.
+            Dadurch, dass Data Versioning noch ein relativ neu akutes Problemfeld darstellt, entwickeln sich viele Tools noch weiter, daher kann das folgende Wissen veraltet sein. Falls Ihnen etwas auffällt, wenden sie sich bitte an die <a href="/data-versioning/#authors">Autoren</a>.
         </div>
 
         <div class="content">
             <p>
-                LakeFS ist eines der populärsten Data Versioning Tools, welches sich
+                LakeFS ist eines der ersten und populärsten Data Versioning Tools, welches sich dank einer aktiven Community stetig weiterentwickelt. LakeFS ist dabei eines der git-like Versioning Tools, da es die üblichen Git-Befehle der Versionskontrolle benutzt.
             </p>
             <p>
-                Sowohl Data Science workcases aber auch Data Engineering
+                LakeFS ist dabei sowohl für Data Science Workloads als auch im Data Engineering nützlich.
             </p>
             <p>
-                Einige sehr große Kunden wie z.B. Netflix
+                Im Bereich des Data Science oder für einen Data Scientist birgt LakeFS viele Vorteile, wie z.B.:
+                Robust Data Pre-Processing: Data cleaning, outlier handling, filling in missing values, etc. Ensure your data pipelines for pre-processing are robust and provide high quality.
+                Deduplicated Experimentation: Use lakeFS branches to run experiments in parallel with zero-copy clones in a fully deduplicated data lake, allowing you to effectively compare them to select the best one.
+                Reproducible Feature Engineering & Model Training: Commit the results of your experiments and use the lakeFS Git integration to reproduce any experiment with the right version of the data, the code and the model weights.
             </p>
-            <img src="../images/tbd.png.webp" alt="LakeFS picture" style="width: 100%">
+            <p>
+                Aber auch im Data Engineering gibt es Vorteile:
+                Isolated Dev/Test Environments: Create isolated dev/test environments using lakeFS branches and reduce your testing time by 80%.
+                Promote Only High Quality Data to Production: Implement CI/CD for data with lakeFS hooks, allowing for automation of quality validation checks.
+                Fix Bad Data with Production Rollback: Save entire consistent snapshots of your data using commits, allowing you to rollback to previous commits in case of bad data.
+            </p>
+            <p>
+                Einige sehr große Kunden wie z.B. Netflix, Toyota, Volvo, Daimler, Air Asia
+            </p>
 
             <div class="columns">
                 <div class="column">
                     <p>
-                        Some more information about LakeFS, how its set up and running
+                        Wir haben LakeFS in einer Docker-Umgebung mit MinIO als Object Store und Trino als Compute Engine genutzt.
+                        Jedoch unterstützt LakeFS viele Integrationsmöglichkeiten und kann somit in vielen unterschiedlichen Data Stacks verwendet werden. Im Folgenden wird eine kleine Übersicht der derzeitigen Integrationen gegeben. Für eine vollständige Darstellung wird jedoch ausdrücklich auf die Website und Dokumentation von LakeFS verwiesen.
+                    </p>
+                    <p>
+                        Object Store: Every object store that uses the S3 interface like AWS, Azure, Google Cloud or MinIO
+                        Compute Engine: AWS Glue, Databricks, Snowflake Starburst, Hive, uvm.
+                        Data Storage Formats: LakeFS unterstützt viele Datenformate wie csv oder parquet, aber auch Open Table Formate wie Delta Lake und Iceberg. Da LakeFS auch für Data Lakes geeignet ist unstützt es auch unstrukturierte Daten, wie Bilder und Videos.
+                        Zusätzlich unterstützt LakeFS auch Orchestration und Workflow Tools, wie Airflow, Dagster und dbt.
                     </p>
                 </div>
                 <div class="column">
@@ -155,7 +173,7 @@
                 </div>
                 <div class="column">
                     <p>
-                        LakeFS more info
+                        LakeFS more info. Maybe Getting started info.
                     </p>
                 </div>
             </div>
