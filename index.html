@@ -149,7 +149,9 @@
 
     <section class="section is-large">
         <h2 class="title" id="wo-für" >Warum beschäftigen wir uns mit Data Versioning</h2>
-        <p>Wir sind in einem Projekt auf die Nützlichkeit gestoßen. Wir haben danach auch weitere Anwendungsfälle in unserem Umfeld gesehen. Außerdem glauben wir, dass ML bald in nahezu jedem Softwaresystem vorhanden sein wird und Data Versioning erleichtert den Umgang mit den benötigten Daten des ML sehr.</p>
+        <p>
+            Wir sind in einem Projekt auf die Nützlichkeit gestoßen. Wir haben danach auch weitere Anwendungsfälle in unserem Umfeld gesehen. Außerdem glauben wir, dass ML bald in nahezu jedem Softwaresystem vorhanden sein wird und Data Versioning erleichtert den Umgang mit den benötigten Daten des ML sehr.
+        </p>
         <div class="columns is-vcentered reverse-columns">
             <div class="column content mb-0 pb-1">
                 <p>
@@ -188,18 +190,21 @@
 
             <div class="column content">
                 <p>
-                    Besides those
+                    Außerdem haben Data Versioning Tools vor allem in der letzten Zeit durch die Entwicklungen im ML und AI Bereich viel Aufmerksamkeit bekommen. Beim Aufsetzen von ML und AI bietet Data Versioning einige besondere Boni, wie z.B. dass Modell und Daten zusammen in einer Version gespeichert werden können.
+                    Auch wenn Data Versioning schon lange existiert haben sich die meisten Tools erst mit dem Hype des ML innerhalb der letzten 10 Jahren etabliert. Diese Tools stammen dabei aus unterschiedlichen Bereichen der Datenverwaltung und blicken daher auch aus verschiedenen Perspektiven auf dieses Thema.
                 </p>
                 <p>
-                    Multiple tool options:
-                    *   Multiple data versioning tools have emerged in the last 10 years
+                    Als grobe Unterscheidung kann man sehen:
                         *   Version control systems for large data
                         *   Data versioning tools for data lakes
                         *   DBMS with version control
                         *   Data versioning support in data pipeline tools for machine learning
-                    *   Existing comparisons and evaluations may be biased by tool vendors
                 </p>
+                <p>
+                    Existing comparisons and evaluations may be biased by tool vendors.
 
+                    Mit dieser Website versuchen wir Klarheit in dieses Themenfeld zu bringen und zu verstehen, welche Tools sich in welchen Umständen lohnen.
+                </p>
             </div>
         </div>
     </section>
@@ -221,6 +226,7 @@
             <div class="column">
                 <div class="content">
                     <p>
+                        Eine erste und auch sehr essentielle Frage zu Data Versioning ist, ob man es überhaupt braucht. Sie pauschal zu beantworten ist wie immer unmöglich, jedoch haben wir uns einige Fälle überlegt, in denen Data Versioning helfen kann.
                         * What does a data version provide?
                         The state of an entity instance as it was known at a given time
                         * What did we know about a clinical trial participant 6 weeks ago?
@@ -242,6 +248,17 @@
                         Yes, if
                         * operational system maintains the effective state. In our use case there would be a need to support retroactive changes, eg by maintaining a bitemporal history
                     </p>
+                    <p>
+                        What is Data Versioning needed for
+                        Record and reproduce
+                        * Descriptive analytics
+                        * diagnostic analytics
+                        * Audit/Rollback data changes
+                        Select and prepare
+                        * Predicitive analytics
+                        * Prescriptive analytics
+                        * Data Set Citation
+                    </p>
                 </div>
             </div>
         </div>
@@ -255,10 +272,69 @@
             </p>
 <!--            <img src="images/datamesharchitecture.png.webp" alt="Data Mesh Architecture" style="width: 100%">-->
             <p>
-                some more
+                little historical view:<br>
+                Data Versioning Approaches
+                * Full duplication
+                    * Explicitly naming and maintaining each data version
+                * Temporal attributes
+                * Version Control System
+                <br>
+                Temporal Attributes
+                * Relying on DBMS features
+                    * Uses DB tables to maintain data versions as data records
+                    * Uses ACID guarantees to create the sequence of data changes
+                * Storing historical versions of database records
+                    * Explicitely adding a history table with valid-from-, valid-to-fields
+                    * Or using system-versioned temporal tables (which do the same)
+                * Querying with „in-between" predicates
+                * Mainly suitable for „basic" data versioning features
+                * Often used in multidimensional modelling of Data Warehouse DBs
+                    * Slowly Changing Dimensions - SCD Type 4
+                * Typically loaded through ETL- (or ELT-) Processing
+                <br>
+                Version Control System
+                * Relying on a metadata repository for all data versions
+                    * Provides a unique reference for each data version
+                    * Links to the data storage component holding the actual data
+                * Repository supports operations to maintain the history of data versions, eg
+                    * checkout to retrieve a working copy of a data version
+                    * commit to apply atomic units of change (extending the data version history)
+                    * branch to create and work on different data version histories
+                    * merge to combine different data version histories into one
+                * Suitable for all data versioning features
+                * Standard version control systems (svn, git, ...) do not fit well to
+                    * large amounts of data
+                    * binary data representations
+                    * trace schema changes
+                <br>
+                When to use which approach?
+                Temporal attributes
+                    *   Recording of changes
+                    *   Reproducing past states
+                    *   Typically used for analyses on structured data - Online Analytical Processing (OLAP)
+                Version control system
+                    * Putting together and forming data sets for specific purposes
+                    * Test data
+                    * Collaborating on the capturing of data
+                    * Application configuration or initialization data
+                    * Unstructured data - binaries
+
             </p>
             <p>
-                Dann die einzelnen Punkte:
+                Technology Stack
+                *   Which technical components combine to a data versioning tool
+                    *   Storage components (File system or object storage, Cloud-based or on-promises)
+                    *   File formats (parquet, avro, orc)
+                    *   Open table formats (Iceberg, hudi, delta)
+                    *   Query-engines (SQL, OLAP, Spark, Map-Reduce, ...)
+                    *   Batch and/or stream-processing
+                    *   Container orchestration (kubernetes, ...)
+                *   Technical components to be combined with data versioning tool
+                    *   Specific In-/Output-/Delete-processing (eg Spark)
+                    *   Standard Version Control System (eg git)
+                    *   Standard RDBMS for transactional state
+
+                Dann werden die einzelnen Punkte nochmal erklärt:
             </p>
         </div>
 
@@ -461,6 +537,18 @@
                 </div>
             </div>
         </div>
+        <p>
+            Evolving Technology
+            *   Object storage on immutable file formats (eg. Parquet) replacing database storage
+                *   allowing to maintain large data volumes
+            *   Open table formats (eg. Iceberg) supporting ACID guarantees
+                *   allowing to collaborate on data versions
+            *   Data versioning enhancements for these file or open table formats (eg. lakeFS)
+            *   Data pipeline tools with integrated data versioning
+                *   allowing to easily combine versions of source and derived data sets (eg. training data and derived ML model)
+            *   Version control systems specifically designed for large data volumes (eg. Git LFS)
+            *   DBMS with integrated data versioning (eg. dolt)
+        </p>
 
     </section>
 
