@@ -148,19 +148,34 @@
 <div class="container">
 
     <section class="section is-large">
-        <h2 class="title" id="wo-für" >Wofür wird Data Versioning gebraucht</h2>
+        <h2 class="title" id="wo-für" >Warum beschäftigen wir uns mit Data Versioning</h2>
+        <p>Wir sind in einem Projekt auf die Nützlichkeit gestoßen. Wir haben danach auch weitere Anwendungsfälle in unserem Umfeld gesehen. Außerdem glauben wir, dass ML bald in nahezu jedem Softwaresystem vorhanden sein wird und Data Versioning erleichtert den Umgang mit den benötigten Daten des ML sehr.</p>
         <div class="columns is-vcentered reverse-columns">
             <div class="column content mb-0 pb-1">
                 <p>
-                    Wofür braucht man Data Versioning...
+                    Proof of Concept at Cluepoints with challenges:
+                    <ul>
+                            <li>Refactoring their platform for Risk-Based Quality Management (RBQM) of medical study data</li>
+                            <li>They were using full data duplication for each set of data to be analyzed</li>
+                            <li>We looked at data versioning tools (specifically lakeFS) to support this use case</li>
+                    </ul>
                 </p>
                 <p>
-                    TBD
+                    Ausformulieren, erklären
+                    Wir haben über diesen Fall ebenfalls einen Blogpost veröffentlicht.
                 </p>
+                <p>
+                    Data Mesh Architecture:
+                    <ul>
+                        <li>Data versioning is usually needed for data products</li>
+                        <li>Data versioning tools provide useful feature</li>
+                    </ul>
+                </p>
+
             </div>
             <div class="column">
                 <figure class="image">
-                    <img src="images/whyteam.png.webp" alt="Picture of Data Versioning">
+                    <img src="images/cp_blogpost.png.webp" alt="Picture of CP blogpost">
                 </figure>
             </div>
         </div>
@@ -173,10 +188,16 @@
 
             <div class="column content">
                 <p>
-                    Mehr Data Versioning
+                    Besides those
                 </p>
                 <p>
-                    maybe
+                    Multiple tool options:
+                    *   Multiple data versioning tools have emerged in the last 10 years
+                        *   Version control systems for large data
+                        *   Data versioning tools for data lakes
+                        *   DBMS with version control
+                        *   Data versioning support in data pipeline tools for machine learning
+                    *   Existing comparisons and evaluations may be biased by tool vendors
                 </p>
 
             </div>
@@ -186,24 +207,40 @@
     <section class="section is-medium">
         <div class="columns is-vcentered">
             <div class="column is-half is-offset-half">
-            <h2 class="title" id="use-cases">Wann brauche ich Data Versioning?</h2>
+            <h2 class="title" id="use-cases">Brauche ich Data Versioning?</h2>
             </div>
         </div>
         <div class="columns is-vcentered">
 
             <div class="column">
-                <a href="images/datamesh.png.webp" class="glightbox">
-                    <img src="images/datamesh.png.webp" alt="What Is Data Mesh? Includes the four principles Domain Ownership, Data as a Product, Self-serve Data Platform, and Federated Governance.">
+                <a href="images/tbd.png.webp" class="glightbox">
+                    <img src="images/tbd.png.webp" alt="TBD">
                 </a>
             </div>
 
             <div class="column">
                 <div class="content">
                     <p>
-                        Some text here
+                        * What does a data version provide?
+                        The state of an entity instance as it was known at a given time
+                        * What did we know about a clinical trial participant 6 weeks ago?
+                        * State of patient (eg. names, date of birth, contact data, profession, previous illnesses, ...) from 1. Oct 23
+
+                        ... together with its specific context
+                        * What did we additionally know about the patient's participation in the clinical trial?
+                        * Data from visits already recorded at that time
+                        * Results from physical examinations already finished by that time
+                        ... for all instances (regarding to a given repository)
+                        * What did we know about all patients 6 weeks ago?
                     </p>
                     <p>
-                        TBD
+                        * … and the effective entity state?
+                        Is the state of an entity instance at a given time as known by today also provided by a data version?
+                        * What do we know today about the health status of a participant as it was 6 weeks ago?
+                        Typically no, but
+                        * may be derived from multiple versions of the participants health status
+                        Yes, if
+                        * operational system maintains the effective state. In our use case there would be a need to support retroactive changes, eg by maintaining a bitemporal history
                     </p>
                 </div>
             </div>
@@ -211,7 +248,7 @@
     </section>
 
     <section class="section is-medium">
-        <h2 class="title" id="warum-data-versioning">Warum Data Versioning?</h2>
+        <h2 class="title" id="warum-data-versioning">Was ist Data Versioning?</h2>
         <div class="content">
             <p class="mt-5">
                 allgemeine Erklärung
